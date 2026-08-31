@@ -16,13 +16,13 @@ export default function App() {
       <AmbientHUD />
       <Nav />
       <main className="relative z-10">
-        <Hero />
-        <About />
-        <Trajectory />
-        <FeaturedWork />
-        <Skills />
-        <ImpactProof />
         <Contact />
+        <ImpactProof />
+        <Skills />
+        <FeaturedWork />
+        <Trajectory />
+        <About />
+        <Hero />
       </main>
       <div className="relative z-10">
         <Footer />
