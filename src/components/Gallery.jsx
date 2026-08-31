@@ -29,11 +29,22 @@ export default function Gallery() {
               style={{ border: "1px solid var(--line)", background: "var(--surface)" }}
             >
               <div
-                className="relative aspect-[4/3] flex items-end p-3"
-                style={{ background: thumbGradients[i % thumbGradients.length] }}
+                className="relative aspect-[4/3] flex items-end p-3 overflow-hidden"
+                style={!item.imageUrl ? { background: thumbGradients[i % thumbGradients.length] } : undefined}
               >
+                {item.imageUrl && (
+                  <img
+                    src={item.imageUrl}
+                    alt={item.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(180deg, transparent 40%, rgba(5,7,15,0.55) 100%)" }}
+                />
                 <span
-                  className="text-xs px-2.5 py-1 rounded-full"
+                  className="relative z-10 text-xs px-2.5 py-1 rounded-full"
                   style={{
                     background: "rgba(5,7,15,0.5)",
                     color: "var(--text)",
