@@ -1,5 +1,6 @@
 import { focusAreas, education, training, skillCategories } from "../data/content";
 import SectionHeading from "./SectionHeading";
+import SkillGraph from "./SkillGraph";
 
 export default function Skills() {
   return (
@@ -7,7 +8,7 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto">
         <SectionHeading eyebrow="Keahlian" title="Yang saya bawa ke setiap proyek." />
 
-        <div className="flex flex-wrap gap-4 mb-10 text-xs">
+        <div className="flex flex-wrap gap-4 mb-6 text-xs">
           {Object.values(skillCategories).map((c) => (
             <span
               key={c.label}
@@ -21,6 +22,10 @@ export default function Skills() {
               {c.label}
             </span>
           ))}
+        </div>
+
+        <div className="mb-14">
+          <SkillGraph />
         </div>
 
         <div className="grid md:grid-cols-3 gap-10">

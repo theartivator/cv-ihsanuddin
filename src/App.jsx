@@ -1,4 +1,4 @@
-import SkillConstellation from "./components/SkillConstellation";
+import NetworkBackground from "./components/NetworkBackground";
 import AmbientHUD from "./components/AmbientHUD";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
@@ -11,7 +11,7 @@ import Contact, { Footer } from "./components/Contact";
 export default function App() {
   return (
     <div className="relative min-h-screen">
-      <SkillConstellation />
+      <NetworkBackground />
       <AmbientHUD />
       <Nav />
       <main className="relative z-10">
