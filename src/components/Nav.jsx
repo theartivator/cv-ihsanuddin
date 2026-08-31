@@ -2,12 +2,12 @@ import { useState } from "react";
 import { profile } from "../data/content";
 
 const links = [
-  { href: "#about", label: "Tentang" },
-  { href: "#experience", label: "Perjalanan" },
-  { href: "#work", label: "Karya" },
-  { href: "#skills", label: "Keahlian" },
-  { href: "#proof", label: "Bukti" },
   { href: "#contact", label: "Kontak" },
+  { href: "#proof", label: "Bukti" },
+  { href: "#skills", label: "Keahlian" },
+  { href: "#work", label: "Karya" },
+  { href: "#experience", label: "Perjalanan" },
+  { href: "#about", label: "Tentang" },
 ];
 
 export default function Nav() {
