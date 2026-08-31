@@ -6,6 +6,7 @@ import About from "./components/About";
 import Trajectory from "./components/Trajectory";
 import FeaturedWork from "./components/FeaturedWork";
 import Skills from "./components/Skills";
+import ImpactProof from "./components/ImpactProof";
 import Contact, { Footer } from "./components/Contact";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Trajectory />
         <FeaturedWork />
         <Skills />
+        <ImpactProof />
         <Contact />
       </main>
       <div className="relative z-10">
