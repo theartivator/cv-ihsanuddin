@@ -24,7 +24,10 @@ function useScrollProgress() {
     const onScroll = () => {
       const doc = document.documentElement;
       const max = doc.scrollHeight - doc.clientHeight;
-      setProgress(max > 0 ? Math.min(1, doc.scrollTop / max) : 0);
+      // Halaman dimulai dari paling bawah (Hero) dan berakhir di paling atas (Kontak).
+      // Jadi 0% = di bawah (baru mulai), 100% = sudah sampai paling atas (selesai).
+      const scrolledUpRatio = max > 0 ? 1 - doc.scrollTop / max : 0;
+      setProgress(Math.min(1, Math.max(0, scrolledUpRatio)));
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
