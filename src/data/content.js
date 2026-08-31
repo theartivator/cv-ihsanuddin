@@ -75,7 +75,7 @@ export const experience = [
     bullets: [
       "Menyusun perencanaan campaign dan program penghimpunan.",
       "Membuat konsep visual untuk meningkatkan brand awareness lembaga.",
-      "Menyusun perencanaan penghimpunan basis kemitraan dan retail.",
+      "Menyusun perencanaaan penghimpunan basis kemitraan dan retail.",
       "Mengelola dan mengembangkan platform crowdfunding lembaga (Bantu Sesama).",
       "Menyusun perencanaan dan meningkatkan konversi iklan serta sosial media.",
     ],
@@ -104,10 +104,16 @@ export const experience = [
 ];
 
 export const projectsInternship = [
-  { org: "PT. Menara Maritim Indonesia (Pelindo)", short: "Pelindo", period: "2023 — 2024" },
-  { org: "Disaster Management Institute of Indonesia (ACT)", short: "ACT", period: "2018" },
-  { org: "PT. Kaizen Konsultan", short: "Kaizen", period: "2017" },
-  { org: "PT. Indosat Mega Media, Jakarta", short: "IM2", period: "2016" },
+  { org: "PT. Menara Maritim Indonesia (Pelindo)", short: "Pelindo", period: "2023 — 2024", logoUrl: null },
+  { org: "Disaster Management Institute of Indonesia (ACT)", short: "ACT", period: "2018", logoUrl: null },
+  { org: "PT. Kaizen Konsultan", short: "Kaizen", period: "2017", logoUrl: null },
+  { org: "PT. Indosat Mega Media, Jakarta", short: "IM2", period: "2016", logoUrl: null },
+  { org: "Slot Logo 5", short: "05", period: "", logoUrl: null },
+  { org: "Slot Logo 6", short: "06", period: "", logoUrl: null },
+  { org: "Slot Logo 7", short: "07", period: "", logoUrl: null },
+  { org: "Slot Logo 8", short: "08", period: "", logoUrl: null },
+  { org: "Slot Logo 9", short: "09", period: "", logoUrl: null },
+  { org: "Slot Logo 10", short: "10", period: "", logoUrl: null },
 ];
 
 export const featuredWork = [
@@ -252,19 +258,6 @@ export const gallery = {
     },
   ],
 };
-
-export const partners = [
-  { name: "Logo Mitra 1", logoUrl: null },
-  { name: "Logo Mitra 2", logoUrl: null },
-  { name: "Logo Mitra 3", logoUrl: null },
-  { name: "Logo Mitra 4", logoUrl: null },
-  { name: "Logo Mitra 5", logoUrl: null },
-  { name: "Logo Mitra 6", logoUrl: null },
-  { name: "Logo Mitra 7", logoUrl: null },
-  { name: "Logo Mitra 8", logoUrl: null },
-  { name: "Logo Mitra 9", logoUrl: null },
-  { name: "Logo Mitra 10", logoUrl: null },
-];
 
 export const training = [
   { name: "Human Growth Strategic", period: "2024 — 2025" },
