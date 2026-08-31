@@ -103,10 +103,10 @@ export const experience = [
 ];
 
 export const projectsInternship = [
-  { org: "PT. Menara Maritim Indonesia (Pelindo)", period: "2023 — 2024" },
-  { org: "Disaster Management Institute of Indonesia (ACT)", period: "2018" },
-  { org: "PT. Kaizen Konsultan", period: "2017" },
-  { org: "PT. Indosat Mega Media, Jakarta", period: "2016" },
+  { org: "PT. Menara Maritim Indonesia (Pelindo)", short: "Pelindo", period: "2023 — 2024" },
+  { org: "Disaster Management Institute of Indonesia (ACT)", short: "ACT", period: "2018" },
+  { org: "PT. Kaizen Konsultan", short: "Kaizen", period: "2017" },
+  { org: "PT. Indosat Mega Media, Jakarta", short: "IM2", period: "2016" },
 ];
 
 export const featuredWork = [
