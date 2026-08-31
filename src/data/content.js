@@ -198,6 +198,52 @@ export const skillCategories = {
   kreatif: { color: "#e8b84b", label: "Kreatif & Brand" },
 };
 
+export const gallery = {
+  moreCount: 89,
+  items: [
+    {
+      tag: "Dashboard",
+      title: "Panel Monitoring Lintas Tim",
+      org: "UCare Indonesia · 2025",
+    },
+    {
+      tag: "Kampanye",
+      title: "Seri Konten Ramadhan Berbagi",
+      org: "UCare Indonesia · 2024",
+    },
+    {
+      tag: "Landing Page",
+      title: "Halaman Donasi Bantu Sesama",
+      org: "UCare Indonesia · 2023",
+    },
+    {
+      tag: "Brand",
+      title: "Key Visual Laporan Tahunan",
+      org: "UCare Indonesia · 2022",
+    },
+    {
+      tag: "Video",
+      title: "Profil Singkat Yayasan",
+      org: "UCare Indonesia · 2021",
+    },
+    {
+      tag: "Tata Kelola",
+      title: "Template Pelaporan Operasional",
+      org: "UCare Indonesia · 2024",
+    },
+    {
+      tag: "Identitas",
+      title: "Redesain Logo & Palet Warna",
+      org: "UCare Indonesia · 2022",
+    },
+    {
+      tag: "Sosial Media",
+      title: "Konten Engagement Mingguan",
+      org: "UCare Indonesia · 2023",
+    },
+  ],
+};
+
 export const training = [
   { name: "Human Growth Strategic", period: "2024 — 2025" },
   { name: "Business Agility & Ambidextrous", period: "2024 — 2025" },
