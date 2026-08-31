@@ -16,6 +16,7 @@ export const profile = {
   phone: "+62 857 7545 4715",
   resumeUrl: "/resume.pdf",
   photoUrl: null,
+  openToWorkPhotoUrl: null,
 };
 
 export const social = [
@@ -205,44 +206,65 @@ export const gallery = {
       tag: "Dashboard",
       title: "Panel Monitoring Lintas Tim",
       org: "UCare Indonesia · 2025",
+      imageUrl: null,
     },
     {
       tag: "Kampanye",
       title: "Seri Konten Ramadhan Berbagi",
       org: "UCare Indonesia · 2024",
+      imageUrl: null,
     },
     {
       tag: "Landing Page",
       title: "Halaman Donasi Bantu Sesama",
       org: "UCare Indonesia · 2023",
+      imageUrl: null,
     },
     {
       tag: "Brand",
       title: "Key Visual Laporan Tahunan",
       org: "UCare Indonesia · 2022",
+      imageUrl: null,
     },
     {
       tag: "Video",
       title: "Profil Singkat Yayasan",
       org: "UCare Indonesia · 2021",
+      imageUrl: null,
     },
     {
       tag: "Tata Kelola",
       title: "Template Pelaporan Operasional",
       org: "UCare Indonesia · 2024",
+      imageUrl: null,
     },
     {
       tag: "Identitas",
       title: "Redesain Logo & Palet Warna",
       org: "UCare Indonesia · 2022",
+      imageUrl: null,
     },
     {
       tag: "Sosial Media",
       title: "Konten Engagement Mingguan",
       org: "UCare Indonesia · 2023",
+      imageUrl: null,
     },
   ],
 };
+
+export const partners = [
+  { name: "Logo Mitra 1", logoUrl: null },
+  { name: "Logo Mitra 2", logoUrl: null },
+  { name: "Logo Mitra 3", logoUrl: null },
+  { name: "Logo Mitra 4", logoUrl: null },
+  { name: "Logo Mitra 5", logoUrl: null },
+  { name: "Logo Mitra 6", logoUrl: null },
+  { name: "Logo Mitra 7", logoUrl: null },
+  { name: "Logo Mitra 8", logoUrl: null },
+  { name: "Logo Mitra 9", logoUrl: null },
+  { name: "Logo Mitra 10", logoUrl: null },
+];
 
 export const training = [
   { name: "Human Growth Strategic", period: "2024 — 2025" },
