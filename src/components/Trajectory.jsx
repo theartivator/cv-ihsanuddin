@@ -1,188 +1,234 @@
+import { useState } from "react";
 import { experience, education, training, projectsInternship } from "../data/content";
 import SectionHeading from "./SectionHeading";
 
-// Menggabungkan tiga sumber data jadi satu timeline dengan sumbu tahun,
-// setiap kategori punya warna sendiri (selaras dengan skill constellation).
-const CATEGORY_COLOR = {
-  kerja: "var(--accent)",
-  pendidikan: "var(--gold)",
-  pelatihan: "#5dd9b0",
+// Tiga kolom paralel (kerja / pendidikan / pelatihan) menggantikan satu
+// timeline vertikal panjang, supaya seluruh perjalanan muat dalam satu
+// layar tanpa scroll berkepanjangan. Kolom kerja memakai accordion karena
+// datanya paling padat (ada bullet pencapaian).
+const COLUMN_META = {
+  kerja: { label: "Pengalaman kerja", color: "var(--accent)" },
+  pendidikan: { label: "Pendidikan", color: "var(--gold)" },
+  pelatihan: { label: "Pelatihan", color: "#5dd9b0" },
 };
 
-function parseStartYear(period) {
-  const match = period.match(/\d{4}/);
-  return match ? parseInt(match[0], 10) : new Date().getFullYear();
-}
-
-function buildTimelineItems() {
-  const items = [
-    ...experience.map((e) => ({
-      year: parseStartYear(e.period),
-      title: e.role,
-      subtitle: e.org,
-      period: e.period,
-      category: "kerja",
-      bullets: e.bullets,
-    })),
-    ...education.map((e) => ({
-      year: parseStartYear(e.period),
-      title: e.school,
-      subtitle: e.detail,
-      period: e.period,
-      category: "pendidikan",
-      bullets: [],
-    })),
-    ...training.map((t) => ({
-      year: parseStartYear(t.period),
-      title: t.name,
-      subtitle: "Pelatihan",
-      period: t.period,
-      category: "pelatihan",
-      bullets: [],
-    })),
-  ];
-  return items.sort((a, b) => b.year - a.year);
-}
+const LOGO_PALETTE = ["#8fa6ff", "#e8b84b", "#5dd9b0", "#ff9a44", "#c792ea"];
 
 export default function Trajectory() {
-  const items = buildTimelineItems();
-
   return (
-    <section id="experience" className="relative px-6 py-28">
-      <div className="max-w-6xl mx-auto">
+    <section id="experience" className="relative px-6 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto w-full">
         <SectionHeading
           eyebrow="Perjalanan"
           title="Dari desain ke sistem, satu peran dalam satu waktu."
         />
 
-        <div className="flex gap-3 mb-10 text-xs flex-wrap">
-          {Object.entries({
-            kerja: "Pengalaman kerja",
-            pendidikan: "Pendidikan",
-            pelatihan: "Pelatihan",
-          }).map(([key, label]) => (
-            <span
-              key={key}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
-              style={{ border: "1px solid var(--line)", color: "var(--text-muted)" }}
-            >
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ background: CATEGORY_COLOR[key] }}
-              />
-              {label}
-            </span>
-          ))}
+        <Legend />
+
+        <div className="grid md:grid-cols-3 gap-5 md:gap-6 items-start">
+          <CareerColumn />
+          <SimpleColumn columnKey="pendidikan" items={education.map((e) => ({
+            id: e.school,
+            title: e.school,
+            subtitle: e.detail,
+            period: e.period,
+          }))} />
+          <SimpleColumn columnKey="pelatihan" items={training.map((t) => ({
+            id: t.name,
+            title: t.name,
+            subtitle: "Pelatihan",
+            period: t.period,
+          }))} />
         </div>
 
-        <div className="grid grid-cols-[3rem_1fr] md:grid-cols-[4rem_1fr] gap-x-2">
-          <div className="relative">
-            <div
-              className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2"
-              style={{ background: "var(--line)" }}
-            />
-          </div>
-          <div />
-
-          {items.map((item, i) => {
-            const prevYear = i > 0 ? items[i - 1].year : null;
-            const showYear = item.year !== prevYear;
-            return (
-              <YearRow
-                key={i}
-                item={item}
-                showYear={showYear}
-                isLast={i === items.length - 1}
-              />
-            );
-          })}
-        </div>
-
-        <div className="mt-16">
-          <p className="text-sm mb-5" style={{ color: "var(--text-dim)" }}>
-            Proyek & Magang
-          </p>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {projectsInternship.map((p) => (
-              <div
-                key={p.org}
-                className="p-4 rounded-xl"
-                style={{
-                  background: "var(--surface)",
-                  border: "1px solid var(--line)",
-                }}
-              >
-                <p className="text-sm font-medium">{p.org}</p>
-                <p
-                  className="text-xs mt-1 font-mono-num"
-                  style={{ color: "var(--text-dim)" }}
-                >
-                  {p.period}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ProjectsLogoWall />
       </div>
     </section>
   );
 }
 
-function YearRow({ item, showYear, isLast }) {
-  const color = CATEGORY_COLOR[item.category];
+function Legend() {
   return (
-    <>
-      <div className="relative flex justify-center">
-        <div
-          className="absolute top-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full z-10"
-          style={{ background: color }}
-        />
-        {!isLast && (
-          <div
-            className="absolute left-1/2 top-1.5 bottom-0 w-px -translate-x-1/2"
-            style={{ background: "var(--line)" }}
-          />
-        )}
-        {showYear && (
-          <span
-            className="absolute -top-1 left-1/2 -translate-x-1/2 -translate-y-full text-xs font-mono-num pb-1"
-            style={{ color: "var(--text-dim)" }}
-          >
-            {item.year}
-          </span>
-        )}
-      </div>
+    <div className="flex gap-3 mb-8 text-xs flex-wrap">
+      {Object.entries(COLUMN_META).map(([key, meta]) => (
+        <span
+          key={key}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
+          style={{ border: "1px solid var(--line)", color: "var(--text-muted)" }}
+        >
+          <span className="w-2 h-2 rounded-full" style={{ background: meta.color }} />
+          {meta.label}
+        </span>
+      ))}
+    </div>
+  );
+}
 
-      <div className="pb-10">
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-          <h3 className="font-display text-base md:text-lg">{item.title}</h3>
-          <span className="text-xs" style={{ color: "var(--text-dim)" }}>
-            {item.subtitle}
-          </span>
-          <span
-            className="text-xs font-mono-num ml-auto"
-            style={{ color: "var(--text-dim)" }}
-          >
-            {item.period}
-          </span>
-        </div>
-        {item.bullets.length > 0 && (
-          <ul className="space-y-1.5">
-            {item.bullets.map((b, j) => (
-              <li
-                key={j}
-                className="text-sm leading-relaxed flex gap-2.5 max-w-2xl"
-                style={{ color: "var(--text-muted)" }}
-              >
-                <span style={{ color }} className="mt-0.5">
-                  ·
-                </span>
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+function ColumnHeader({ columnKey, count }) {
+  const meta = COLUMN_META[columnKey];
+  return (
+    <div className="flex items-center gap-2 mb-3 px-1">
+      <span className="w-2.5 h-2.5 rounded-full" style={{ background: meta.color }} />
+      <h3 className="font-display text-sm font-medium uppercase tracking-wide" style={{ color: "var(--text-muted)" }}>
+        {meta.label}
+      </h3>
+      <span className="text-xs font-mono-num ml-auto" style={{ color: "var(--text-dim)" }}>
+        {String(count).padStart(2, "0")}
+      </span>
+    </div>
+  );
+}
+
+function ColumnShell({ columnKey, count, children }) {
+  return (
+    <div
+      className="rounded-2xl flex flex-col p-3 md:p-4"
+      style={{ border: "1px solid var(--line)", background: "var(--surface)" }}
+    >
+      <ColumnHeader columnKey={columnKey} count={count} />
+      <div className="flex flex-col gap-1.5 md:max-h-[26rem] md:overflow-y-auto scroll-thin pr-1 -mr-1">
+        {children}
       </div>
-    </>
+    </div>
+  );
+}
+
+function CareerColumn() {
+  const [openIndex, setOpenIndex] = useState(0);
+  const color = COLUMN_META.kerja.color;
+
+  return (
+    <ColumnShell columnKey="kerja" count={experience.length}>
+      {experience.map((e, i) => {
+        const open = openIndex === i;
+        return (
+          <div
+            key={e.role + e.period}
+            className="rounded-xl transition-colors"
+            style={{
+              border: "1px solid",
+              borderColor: open ? "var(--line)" : "transparent",
+              background: open ? "var(--surface-2)" : "transparent",
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setOpenIndex(open ? -1 : i)}
+              className="w-full text-left px-2.5 py-2.5 flex items-start gap-2.5"
+              aria-expanded={open}
+            >
+              <span className="w-2 h-2 rounded-full mt-1.5 shrink-0" style={{ background: color }} />
+              <span className="flex-1 min-w-0">
+                <span className="block font-display text-sm font-medium leading-snug">{e.role}</span>
+                <span className="block text-xs mt-0.5" style={{ color: "var(--text-dim)" }}>
+                  {e.org} · {e.period}
+                </span>
+              </span>
+              <Chevron open={open} color={color} />
+            </button>
+            {open && e.bullets.length > 0 && (
+              <ul className="px-2.5 pb-3 pl-7 space-y-1.5">
+                {e.bullets.map((b, j) => (
+                  <li key={j} className="text-xs leading-relaxed flex gap-2" style={{ color: "var(--text-muted)" }}>
+                    <span style={{ color }} className="mt-0.5 shrink-0">·</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        );
+      })}
+    </ColumnShell>
+  );
+}
+
+function SimpleColumn({ columnKey, items }) {
+  const color = COLUMN_META[columnKey].color;
+  return (
+    <ColumnShell columnKey={columnKey} count={items.length}>
+      {items.map((item) => (
+        <div key={item.id} className="px-2.5 py-2.5 rounded-xl" style={{ background: "transparent" }}>
+          <div className="flex items-start gap-2.5">
+            <span className="w-2 h-2 rounded-full mt-1.5 shrink-0" style={{ background: color }} />
+            <span className="flex-1 min-w-0">
+              <span className="block font-display text-sm font-medium leading-snug">{item.title}</span>
+              <span className="block text-xs mt-0.5" style={{ color: "var(--text-dim)" }}>
+                {item.subtitle}
+              </span>
+            </span>
+            <span className="text-xs font-mono-num shrink-0" style={{ color: "var(--text-dim)" }}>
+              {item.period}
+            </span>
+          </div>
+        </div>
+      ))}
+    </ColumnShell>
+  );
+}
+
+function Chevron({ open, color }) {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      className="mt-1 shrink-0 transition-transform duration-200"
+      style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+    >
+      <path d="M3 5.5L7 9.5L11 5.5" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// Dinding logo proyek & magang — dirancang untuk 10 slot (5 atas, 5 bawah).
+// Belum ada file logo asli, jadi tiap organisasi tampil sebagai wordmark
+// singkat berwarna (bukan avatar inisial) supaya tetap terasa seperti
+// deretan logo, bukan placeholder kosong. Tambah entri baru di
+// `projectsInternship` (src/data/content.js) untuk mengisi slot berikutnya.
+function ProjectsLogoWall() {
+  return (
+    <div className="mt-10 md:mt-12">
+      <div className="flex items-baseline justify-between mb-4">
+        <p className="text-sm" style={{ color: "var(--text-dim)" }}>
+          Proyek &amp; Magang
+        </p>
+        <p className="text-xs font-mono-num" style={{ color: "var(--text-dim)" }}>
+          {String(projectsInternship.length).padStart(2, "0")} / 10
+        </p>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+        {projectsInternship.map((p, i) => (
+          <LogoTile key={p.org} project={p} color={LOGO_PALETTE[i % LOGO_PALETTE.length]} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function LogoTile({ project, color }) {
+  return (
+    <div
+      className="group relative aspect-[4/3] rounded-xl flex flex-col items-center justify-center gap-1.5 px-2 text-center transition-all duration-200"
+      style={{ border: "1px solid var(--line)", background: "var(--surface)" }}
+      title={`${project.org} · ${project.period}`}
+    >
+      <span
+        className="font-display font-semibold text-sm md:text-base tracking-wide transition-colors duration-200"
+        style={{ color: "var(--text-muted)" }}
+      >
+        <span className="group-hover:hidden">{project.short}</span>
+        <span className="hidden group-hover:inline" style={{ color }}>
+          {project.short}
+        </span>
+      </span>
+      <span
+        className="text-[10px] font-mono-num opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        style={{ color: "var(--text-dim)" }}
+      >
+        {project.period}
+      </span>
+    </div>
   );
 }
