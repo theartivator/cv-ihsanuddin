@@ -4,6 +4,38 @@ export default function Contact() {
   return (
     <section id="contact" className="relative px-6 py-28">
       <div className="max-w-6xl mx-auto">
+        <div className="flex items-center gap-4 mb-8">
+          <div
+            className="w-14 h-14 rounded-full overflow-hidden shrink-0"
+            style={{ border: "2px solid var(--accent)", background: "var(--surface)" }}
+          >
+            {profile.openToWorkPhotoUrl ? (
+              <img
+                src={profile.openToWorkPhotoUrl}
+                alt={`${profile.name} ${profile.lastName}`}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div
+                className="w-full h-full flex items-center justify-center font-display text-sm"
+                style={{ color: "var(--accent)" }}
+              >
+                MI
+              </div>
+            )}
+          </div>
+          <span
+            className="text-xs px-3 py-1.5 rounded-full"
+            style={{
+              background: "var(--accent-soft)",
+              color: "var(--accent)",
+              border: "1px solid var(--line)",
+            }}
+          >
+            Open to Work
+          </span>
+        </div>
+
         <p className="text-sm mb-3" style={{ color: "var(--gold)" }}>
           Kontak
         </p>
