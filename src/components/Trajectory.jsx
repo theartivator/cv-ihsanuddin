@@ -182,11 +182,10 @@ function Chevron({ open, color }) {
   );
 }
 
-// Dinding logo proyek & magang — dirancang untuk 10 slot (5 atas, 5 bawah).
-// Belum ada file logo asli, jadi tiap organisasi tampil sebagai wordmark
-// singkat berwarna (bukan avatar inisial) supaya tetap terasa seperti
-// deretan logo, bukan placeholder kosong. Tambah entri baru di
-// `projectsInternship` (src/data/content.js) untuk mengisi slot berikutnya.
+// Dinding logo proyek & magang — 10 slot (5 atas, 5 bawah). Tiap organisasi
+// tampil sebagai wordmark singkat berwarna selama logoUrl belum diisi;
+// begitu logoUrl terisi di `projectsInternship` (src/data/content.js),
+// wordmark otomatis diganti gambar logo aslinya.
 function ProjectsLogoWall() {
   return (
     <div className="mt-10 md:mt-12">
@@ -210,25 +209,35 @@ function ProjectsLogoWall() {
 function LogoTile({ project, color }) {
   return (
     <div
-      className="group relative aspect-[4/3] rounded-xl flex flex-col items-center justify-center gap-1.5 px-2 text-center transition-all duration-200"
+      className="group relative aspect-[4/3] rounded-xl flex flex-col items-center justify-center gap-1.5 px-2 text-center transition-all duration-200 overflow-hidden"
       style={{ border: "1px solid var(--line)", background: "var(--surface)" }}
-      title={`${project.org} · ${project.period}`}
+      title={project.period ? `${project.org} · ${project.period}` : project.org}
     >
-      <span
-        className="font-display font-semibold text-sm md:text-base tracking-wide transition-colors duration-200"
-        style={{ color: "var(--text-muted)" }}
-      >
-        <span className="group-hover:hidden">{project.short}</span>
-        <span className="hidden group-hover:inline" style={{ color }}>
-          {project.short}
+      {project.logoUrl ? (
+        <img
+          src={project.logoUrl}
+          alt={project.org}
+          className="max-w-[70%] max-h-[60%] object-contain"
+        />
+      ) : (
+        <span
+          className="font-display font-semibold text-sm md:text-base tracking-wide transition-colors duration-200"
+          style={{ color: "var(--text-muted)" }}
+        >
+          <span className="group-hover:hidden">{project.short}</span>
+          <span className="hidden group-hover:inline" style={{ color }}>
+            {project.short}
+          </span>
         </span>
-      </span>
-      <span
-        className="text-[10px] font-mono-num opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-        style={{ color: "var(--text-dim)" }}
-      >
-        {project.period}
-      </span>
+      )}
+      {project.period && (
+        <span
+          className="text-[10px] font-mono-num opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          style={{ color: "var(--text-dim)" }}
+        >
+          {project.period}
+        </span>
+      )}
     </div>
   );
 }
