@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 
-// Background ambient generik untuk seluruh halaman: titik-titik yang
-// mengambang pelan dan saling terhubung dengan garis tipis saat berdekatan
-// (constellation effect), tanpa label atau makna skill apa pun.
+// Background ambient untuk seluruh halaman: field titik-titik yang
+// berputar pelan sebagai satu kesatuan, saling terhubung dengan garis
+// tipis saat berdekatan, dan memencar radial menjauhi kursor saat
+// didekati lalu kembali pelan ke posisi semula (spring-back).
 export default function NetworkBackground() {
   const canvasRef = useRef(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
@@ -13,12 +14,18 @@ export default function NetworkBackground() {
     let raf;
     let width, height, dpr;
     let dots = [];
+    let t = 0;
 
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    const LINK_DIST = 130;
+    const LINK_DIST = 140;
+    const REPEL_RADIUS = 160;
+    const REPEL_STRENGTH = 2.6;
+    const SPRING_K = 0.02;
+    const DAMPING = 0.9;
+    const ROTATION_SPEED = 0.00045; // rad/frame — satu putaran penuh ~ beberapa menit
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -30,57 +37,89 @@ export default function NetworkBackground() {
       canvas.style.height = height + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.min(140, Math.floor((width * height) / 11000));
+      const count = Math.min(260, Math.floor((width * height) / 6500));
       dots = Array.from({ length: count }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
-        r: Math.random() * 1 + 0.6,
+        homeX: Math.random() * width,
+        homeY: Math.random() * height,
+        dx: 0,
+        dy: 0,
+        vx: 0,
+        vy: 0,
+        r: Math.random() * 1.1 + 0.5,
       }));
     }
 
+    // Rotasi invers untuk memetakan posisi kursor layar ke ruang model
+    // (unrotated), supaya efek memencar tetap akurat mengikuti kursor
+    // meski seluruh field sedang berputar.
+    function inverseRotate(px, py, cx, cy, angle) {
+      const dx = px - cx;
+      const dy = py - cy;
+      const cos = Math.cos(-angle);
+      const sin = Math.sin(-angle);
+      return {
+        x: cx + dx * cos - dy * sin,
+        y: cy + dx * sin + dy * cos,
+      };
+    }
+
     function step() {
+      t += 1;
       ctx.clearRect(0, 0, width, height);
 
-      const mx = mouseRef.current.x;
-      const my = mouseRef.current.y;
+      const angle = reduceMotion ? 0 : t * ROTATION_SPEED;
+      const cx = width / 2;
+      const cy = height / 2;
+
+      const mouseModel = reduceMotion
+        ? { x: -9999, y: -9999 }
+        : inverseRotate(mouseRef.current.x, mouseRef.current.y, cx, cy, angle);
 
       for (const d of dots) {
         if (!reduceMotion) {
-          d.x += d.vx;
-          d.y += d.vy;
+          const posX = d.homeX + d.dx;
+          const posY = d.homeY + d.dy;
+          const rdx = posX - mouseModel.x;
+          const rdy = posY - mouseModel.y;
+          const dist = Math.hypot(rdx, rdy);
 
-          const dx = d.x - mx;
-          const dy = d.y - my;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 110 && dist > 0.01) {
-            const force = (1 - dist / 110) * 0.04;
-            d.vx += (dx / dist) * force;
-            d.vy += (dy / dist) * force;
+          if (dist < REPEL_RADIUS && dist > 0.01) {
+            const falloff = 1 - dist / REPEL_RADIUS;
+            const force = falloff * falloff * REPEL_STRENGTH;
+            d.vx += (rdx / dist) * force;
+            d.vy += (rdy / dist) * force;
           }
-          d.vx *= 0.99;
-          d.vy *= 0.99;
-        }
 
-        if (d.x < -10) d.x = width + 10;
-        if (d.x > width + 10) d.x = -10;
-        if (d.y < -10) d.y = height + 10;
-        if (d.y > height + 10) d.y = -10;
+          d.vx += -d.dx * SPRING_K;
+          d.vy += -d.dy * SPRING_K;
+          d.vx *= DAMPING;
+          d.vy *= DAMPING;
+          d.dx += d.vx;
+          d.dy += d.vy;
+        }
       }
+
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+      ctx.translate(-cx, -cy);
 
       for (let i = 0; i < dots.length; i++) {
         for (let j = i + 1; j < dots.length; j++) {
           const a = dots[i];
           const b = dots[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
+          const ax = a.homeX + a.dx;
+          const ay = a.homeY + a.dy;
+          const bx = b.homeX + b.dx;
+          const by = b.homeY + b.dy;
+          const dx = ax - bx;
+          const dy = ay - by;
           const dist = Math.hypot(dx, dy);
           if (dist < LINK_DIST) {
-            const alpha = (1 - dist / LINK_DIST) * 0.12;
+            const alpha = (1 - dist / LINK_DIST) * 0.16;
             ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(bx, by);
             ctx.strokeStyle = `rgba(143,166,255,${alpha})`;
             ctx.lineWidth = 1;
             ctx.stroke();
@@ -90,10 +129,12 @@ export default function NetworkBackground() {
 
       for (const d of dots) {
         ctx.beginPath();
-        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(233,237,251,0.45)";
+        ctx.arc(d.homeX + d.dx, d.homeY + d.dy, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(233,237,251,0.5)";
         ctx.fill();
       }
+
+      ctx.restore();
 
       raf = requestAnimationFrame(step);
     }
