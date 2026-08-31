@@ -1,3 +1,8 @@
+// ============================================================
+// SEMUA TEKS DAN DATA CV ADA DI SINI.
+// Edit file ini untuk mengubah konten — tidak perlu sentuh komponen.
+// ============================================================
+
 export const profile = {
   name: "Muhammad",
   lastName: "Ihsanuddin",
@@ -10,6 +15,7 @@ export const profile = {
   email: "artivator@gmail.com",
   phone: "+62 857 7545 4715",
   resumeUrl: "/resume.pdf",
+  photoUrl: null, // ganti dengan path fotomu, misal "/photo.jpg" (taruh file di folder public/)
 };
 
 export const social = [
@@ -48,6 +54,7 @@ export const about = {
   ],
 };
 
+// Timeline pengalaman kerja — urut dari terbaru
 export const experience = [
   {
     role: "Manager Inovasi",
@@ -103,6 +110,7 @@ export const projectsInternship = [
   { org: "PT. Indosat Mega Media, Jakarta", period: "2016" },
 ];
 
+// "Featured work" — studi kasus format Context → Approach → Outcome
 export const featuredWork = [
   {
     tag: "Sistem & Operasional",
@@ -166,6 +174,33 @@ export const education = [
     period: "2007 — 2010",
   },
 ];
+
+// Node untuk background "skill constellation" — dikelompokkan per kategori,
+// masing-masing kategori punya warna sendiri (mirip graph view Obsidian).
+export const skillNodes = [
+  { label: "Dashboard Otomasi", category: "sistem" },
+  { label: "Tata Kelola", category: "sistem" },
+  { label: "Project Management", category: "sistem" },
+  { label: "Administrasi", category: "sistem" },
+  { label: "Crowdfunding Platform", category: "sistem" },
+  { label: "Riset & Analisa", category: "riset" },
+  { label: "Problem Solving", category: "riset" },
+  { label: "Strategi Inovasi", category: "riset" },
+  { label: "Analytical Thinking", category: "riset" },
+  { label: "Komunikasi", category: "riset" },
+  { label: "Desain Grafis", category: "kreatif" },
+  { label: "Key Visual", category: "kreatif" },
+  { label: "Campaign Kreatif", category: "kreatif" },
+  { label: "Brand Awareness", category: "kreatif" },
+  { label: "Concepting", category: "kreatif" },
+  { label: "Sosial Media", category: "kreatif" },
+];
+
+export const skillCategories = {
+  sistem: { color: "#8fa6ff", label: "Sistem & Operasional" },
+  riset: { color: "#5dd9b0", label: "Riset & Strategi" },
+  kreatif: { color: "#e8b84b", label: "Kreatif & Brand" },
+};
 
 export const training = [
   { name: "Human Growth Strategic", period: "2024 — 2025" },
