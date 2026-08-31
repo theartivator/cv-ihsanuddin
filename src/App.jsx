@@ -7,6 +7,7 @@ import About from "./components/About";
 import Trajectory from "./components/Trajectory";
 import FeaturedWork from "./components/FeaturedWork";
 import Gallery from "./components/Gallery";
+import Partners from "./components/Partners";
 import ImpactProof from "./components/ImpactProof";
 import Contact, { Footer } from "./components/Contact";
 
@@ -41,6 +42,7 @@ export default function App() {
         <ImpactProof />
         <FeaturedWork />
         <Gallery />
+        <Partners />
         <Trajectory />
         <About />
         <Hero />
