@@ -6,7 +6,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-start gap-10 md:gap-16">
         <div className="flex flex-col items-center gap-3 shrink-0 md:w-40">
           <div
-            className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden"
+            className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden"
             style={{ border: "2px solid var(--accent)", background: "var(--surface)" }}
           >
             {profile.openToWorkPhotoUrl ? (
@@ -17,7 +17,7 @@ export default function Contact() {
               />
             ) : (
               <div
-                className="w-full h-full flex items-center justify-center font-display text-base"
+                className="w-full h-full flex items-center justify-center font-display text-xl"
                 style={{ color: "var(--accent)" }}
               >
                 MI
@@ -25,7 +25,7 @@ export default function Contact() {
             )}
           </div>
           <span
-            className="text-xs px-3 py-1.5 rounded-full text-center whitespace-nowrap"
+            className="text-sm px-4 py-2 rounded-full text-center whitespace-nowrap font-medium"
             style={{
               background: "rgba(52, 211, 153, 0.14)",
               color: "#34d399",
