@@ -15,7 +15,7 @@ export const profile = {
   email: "artivator@gmail.com",
   phone: "+62 857 7545 4715",
   resumeUrl: "/resume.pdf",
-  photoUrl: null,
+  photoUrl: "/Bahan%20CV-01.png",
   openToWorkPhotoUrl: null,
 };
 
