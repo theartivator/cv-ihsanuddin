@@ -1,4 +1,4 @@
-import { focusAreas, education, training } from "../data/content";
+import { focusAreas, education, training, skillCategories } from "../data/content";
 import SectionHeading from "./SectionHeading";
 
 export default function Skills() {
@@ -6,6 +6,22 @@ export default function Skills() {
     <section id="skills" className="relative px-6 py-28">
       <div className="max-w-6xl mx-auto">
         <SectionHeading eyebrow="Keahlian" title="Yang saya bawa ke setiap proyek." />
+
+        <div className="flex flex-wrap gap-4 mb-10 text-xs">
+          {Object.values(skillCategories).map((c) => (
+            <span
+              key={c.label}
+              className="flex items-center gap-2"
+              style={{ color: "var(--text-dim)" }}
+            >
+              <span
+                className="w-2 h-2 rounded-full"
+                style={{ background: c.color }}
+              />
+              {c.label}
+            </span>
+          ))}
+        </div>
 
         <div className="grid md:grid-cols-3 gap-10">
           <div>
