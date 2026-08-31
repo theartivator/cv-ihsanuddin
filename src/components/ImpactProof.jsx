@@ -84,7 +84,7 @@ const clusters = [
   },
 ];
 
-const CENTER = { x: 49, y: 51 };
+const CORE = { x: 50, y: 50 };
 
 const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
@@ -105,26 +105,15 @@ const { positioned, links } = (() => {
   return { positioned, links };
 })();
 
-// spokes: gentle curved line from the core to each cluster anchor
-const spokes = clusters.map((c, i) => {
-  const mx = (CENTER.x + c.anchor.x) / 2;
-  const my = (CENTER.y + c.anchor.y) / 2;
-  // bow the curve slightly so spokes don't overlap in a straight starburst
-  const bendSign = i % 2 === 0 ? 1 : -1;
-  const nx = -(c.anchor.y - CENTER.y);
-  const ny = c.anchor.x - CENTER.x;
-  const norm = Math.hypot(nx, ny) || 1;
-  const bend = 3.2 * bendSign;
-  const cx = mx + (nx / norm) * bend;
-  const cy = my + (ny / norm) * bend;
-  return {
-    id: c.id,
-    hex: c.hex,
-    d: `M ${CENTER.x} ${CENTER.y} Q ${cx} ${cy} ${c.anchor.x} ${c.anchor.y}`,
-    dur: 2.6 + (i % 4) * 0.5,
-    delay: i * 0.35,
-  };
-});
+// lines from each cluster anchor converging into the central core
+const coreLinks = clusters.map((c, i) => ({
+  id: c.id,
+  hex: c.hex,
+  from: c.anchor,
+  to: CORE,
+  delay: (i * 0.35).toFixed(2),
+  duration: (3.2 + (i % 4) * 0.5).toFixed(2),
+}));
 
 function useStars(count) {
   return useMemo(
@@ -148,7 +137,7 @@ export default function ImpactProof() {
       <div className="max-w-6xl mx-auto">
         <SectionHeading eyebrow="Bukti" title="Proven, reliable!" />
         <p className="text-sm max-w-xl -mt-8 mb-10" style={{ color: "var(--text-dim)" }}>
-          Solusi dari masalahmu. Setiap angka dari pengalaman nyata, bukan proyeksi — semua terhubung dari satu titik yang sama.
+          Solusi dari masalahmu. Setiap angka dari pengalaman nyata, bukan proyeksi.
         </p>
 
         <div
@@ -173,80 +162,8 @@ export default function ImpactProof() {
             ))}
           </div>
 
-          {/* core light bloom, sits behind everything */}
-          <div
-            className="absolute rounded-full pointer-events-none"
-            style={{
-              left: CENTER.x + "%",
-              top: CENTER.y + "%",
-              width: 220,
-              height: 220,
-              transform: "translate(-50%, -50%)",
-              background: "radial-gradient(circle, rgba(200,215,255,0.16) 0%, rgba(143,166,255,0.07) 40%, rgba(143,166,255,0) 72%)",
-              animation: "proof-core-pulse 5s ease-in-out infinite",
-            }}
-          />
-
-          {/* spokes: core -> each cluster, chain links, and glow duplicates */}
+          {/* cluster-internal links */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <filter id="proofGlowSoft" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="1.1" />
-              </filter>
-            </defs>
-
-            {/* soft glow pass under the spokes */}
-            <g filter="url(#proofGlowSoft)">
-              {spokes.map((s) => {
-                const active = hovered && hovered.clusterId === s.id;
-                return (
-                  <path
-                    key={"glow-" + s.id}
-                    d={s.d}
-                    fill="none"
-                    stroke={s.hex}
-                    strokeWidth={active ? 1.1 : 0.6}
-                    strokeLinecap="round"
-                    opacity={active ? 0.55 : 0.22}
-                    style={{ transition: "opacity .25s, stroke-width .25s" }}
-                  />
-                );
-              })}
-            </g>
-
-            {/* crisp spoke line */}
-            {spokes.map((s) => {
-              const active = hovered && hovered.clusterId === s.id;
-              return (
-                <path
-                  key={"spoke-" + s.id}
-                  d={s.d}
-                  fill="none"
-                  stroke={s.hex}
-                  strokeWidth={active ? 0.55 : 0.32}
-                  strokeLinecap="round"
-                  opacity={active ? 0.9 : 0.4}
-                  style={{ transition: "opacity .25s, stroke-width .25s" }}
-                />
-              );
-            })}
-
-            {/* traveling light dot along each spoke, flowing from the core outward */}
-            {spokes.map((s) => (
-              <circle key={"pulse-" + s.id} r="0.55" fill={s.hex}>
-                <animateMotion dur={`${s.dur}s`} begin={`${s.delay}s`} repeatCount="indefinite" path={s.d} />
-                <animate
-                  attributeName="opacity"
-                  values="0;1;1;0"
-                  keyTimes="0;0.15;0.85;1"
-                  dur={`${s.dur}s`}
-                  begin={`${s.delay}s`}
-                  repeatCount="indefinite"
-                />
-              </circle>
-            ))}
-
-            {/* existing chain links inside each cluster */}
             {links.map((l, i) => {
               const active = hovered && hovered.clusterId === l.clusterId;
               return (
@@ -261,32 +178,94 @@ export default function ImpactProof() {
             })}
           </svg>
 
-          {/* core node: brain / hub */}
+          {/* converging light lines toward the central core */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            {coreLinks.map((l) => {
+              const active = hovered && hovered.clusterId === l.id;
+              return (
+                <g key={l.id}>
+                  <line
+                    x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
+                    stroke={l.hex}
+                    strokeWidth={active ? 0.45 : 0.22}
+                    opacity={active ? 0.35 : 0.14}
+                    style={{ transition: "opacity .25s, stroke-width .25s" }}
+                  />
+                  <line
+                    className="proof-core-flow"
+                    x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
+                    stroke="#ffffff"
+                    strokeWidth={active ? 0.55 : 0.35}
+                    strokeLinecap="round"
+                    strokeDasharray="0.6 7"
+                    opacity={active ? 0.85 : 0.45}
+                    style={{
+                      animationDuration: `${l.duration}s`,
+                      animationDelay: `${l.delay}s`,
+                      filter: `drop-shadow(0 0 1.2px ${l.hex})`,
+                      transition: "opacity .25s, stroke-width .25s",
+                    }}
+                  />
+                </g>
+              );
+            })}
+          </svg>
+
+          {/* central core: light + brain */}
           <div
-            className="absolute rounded-full pointer-events-none"
-            style={{
-              left: CENTER.x + "%",
-              top: CENTER.y + "%",
-              width: 14,
-              height: 14,
-              transform: "translate(-50%, -50%)",
-              background: "radial-gradient(circle at 35% 30%, #ffffff, #c9d4ff 45%, #8fa6ff 100%)",
-              boxShadow: "0 0 22px 6px rgba(180,196,255,0.55), 0 0 60px 18px rgba(143,166,255,0.25)",
-              animation: "proof-core-breathe 3.2s ease-in-out infinite",
-            }}
-          />
-          <div
-            className="absolute rounded-full pointer-events-none"
-            style={{
-              left: CENTER.x + "%",
-              top: CENTER.y + "%",
-              width: 30,
-              height: 30,
-              transform: "translate(-50%, -50%)",
-              border: "1px solid rgba(200,215,255,0.35)",
-              animation: "proof-core-ring 6s linear infinite",
-            }}
-          />
+            className="absolute pointer-events-none"
+            style={{ left: CORE.x + "%", top: CORE.y + "%", transform: "translate(-50%, -50%)" }}
+          >
+            <div
+              className="proof-core-halo absolute rounded-full"
+              style={{
+                width: 150, height: 150, left: "50%", top: "50%",
+                transform: "translate(-50%, -50%)",
+                background: "radial-gradient(circle, rgba(143,166,255,0.35) 0%, rgba(143,166,255,0) 70%)",
+                filter: "blur(2px)",
+              }}
+            />
+            <svg
+              className="proof-core-brain relative"
+              width="46" height="38" viewBox="0 0 46 38"
+              style={{ overflow: "visible" }}
+            >
+              <defs>
+                <radialGradient id="proof-core-grad" cx="50%" cy="45%" r="65%">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+                  <stop offset="55%" stopColor="#c9d4ff" stopOpacity="0.55" />
+                  <stop offset="100%" stopColor="#8fa6ff" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              {/* soft brain-like twin-lobe silhouette */}
+              <path
+                d="M23 3
+                   C14 -1 3 4 3 14
+                   C3 19 6 21 5 25
+                   C4 30 9 34 15 33
+                   C18 36 28 36 31 33
+                   C37 34 42 30 41 25
+                   C40 21 43 19 43 14
+                   C43 4 32 -1 23 3 Z"
+                fill="url(#proof-core-grad)"
+                stroke="rgba(255,255,255,0.55)"
+                strokeWidth="0.6"
+              />
+              {/* subtle fold lines for a "neural" texture */}
+              <path d="M23 5 C21 12 21 22 23 32" stroke="rgba(11,15,34,0.35)" strokeWidth="0.5" fill="none" />
+              <path d="M12 10 C15 15 15 22 11 27" stroke="rgba(11,15,34,0.25)" strokeWidth="0.4" fill="none" />
+              <path d="M34 10 C31 15 31 22 35 27" stroke="rgba(11,15,34,0.25)" strokeWidth="0.4" fill="none" />
+            </svg>
+            <div
+              className="proof-core-pulse absolute rounded-full"
+              style={{
+                width: 10, height: 10, left: "50%", top: "58%",
+                transform: "translate(-50%, -50%)",
+                background: "#ffffff",
+                boxShadow: "0 0 18px 6px rgba(255,255,255,0.85)",
+              }}
+            />
+          </div>
 
           {/* nodes */}
           {positioned.map((n, i) => {
@@ -366,18 +345,34 @@ export default function ImpactProof() {
           0%, 100% { opacity: .15; }
           50% { opacity: .75; }
         }
+        @keyframes proof-flow-dash {
+          to { stroke-dashoffset: -30; }
+        }
+        .proof-core-flow {
+          animation-name: proof-flow-dash;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
         @keyframes proof-core-pulse {
-          0%, 100% { opacity: .7; transform: translate(-50%, -50%) scale(1); }
-          50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .9; }
+          50% { transform: translate(-50%, -50%) scale(1.5); opacity: .55; }
         }
-        @keyframes proof-core-breathe {
-          0%, 100% { transform: translate(-50%, -50%) scale(1); }
-          50% { transform: translate(-50%, -50%) scale(1.18); }
+        .proof-core-pulse {
+          animation: proof-core-pulse 2.6s ease-in-out infinite;
         }
-        @keyframes proof-core-ring {
-          0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: .5; }
-          50% { opacity: .9; }
-          100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: .5; }
+        @keyframes proof-core-halo-pulse {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .8; }
+          50% { transform: translate(-50%, -50%) scale(1.25); opacity: .45; }
+        }
+        .proof-core-halo {
+          animation: proof-core-halo-pulse 3.4s ease-in-out infinite;
+        }
+        @keyframes proof-core-glow {
+          0%, 100% { filter: drop-shadow(0 0 6px rgba(143,166,255,0.55)); }
+          50% { filter: drop-shadow(0 0 16px rgba(143,166,255,0.9)); }
+        }
+        .proof-core-brain {
+          animation: proof-core-glow 3.4s ease-in-out infinite;
         }
       `}</style>
     </section>
