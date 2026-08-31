@@ -4,7 +4,6 @@ import { profile } from "../data/content";
 const links = [
   { href: "#contact", label: "Kontak" },
   { href: "#proof", label: "Bukti" },
-  { href: "#skills", label: "Keahlian" },
   { href: "#work", label: "Karya" },
   { href: "#experience", label: "Perjalanan" },
   { href: "#about", label: "Tentang" },
