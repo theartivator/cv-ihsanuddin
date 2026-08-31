@@ -6,6 +6,38 @@ export default function Hero() {
       id="top"
       className="relative min-h-[92vh] flex flex-col justify-center px-6 pt-24"
     >
+      <div
+        className="hidden lg:block absolute right-6 top-28 bottom-24 w-[38%] max-w-md rounded-3xl overflow-hidden"
+        style={{
+          border: "1px solid var(--line)",
+          background: "linear-gradient(160deg, var(--surface), var(--surface-2))",
+        }}
+      >
+        {profile.photoUrl ? (
+          <img
+            src={profile.photoUrl}
+            alt={`${profile.name} ${profile.lastName}`}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center gap-3">
+            <div
+              className="w-24 h-24 rounded-full flex items-center justify-center font-display text-3xl"
+              style={{
+                background: "var(--gold-soft)",
+                color: "var(--gold)",
+                border: "1px solid var(--line)",
+              }}
+            >
+              MI
+            </div>
+            <p className="text-xs text-center px-8" style={{ color: "var(--text-dim)" }}>
+              Ganti dengan fotomu di src/data/content.js (profile.photoUrl)
+            </p>
+          </div>
+        )}
+      </div>
+
       <div className="max-w-6xl mx-auto w-full">
         <p
           className="text-sm mb-6"
