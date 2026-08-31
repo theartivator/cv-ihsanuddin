@@ -6,6 +6,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Trajectory from "./components/Trajectory";
 import FeaturedWork from "./components/FeaturedWork";
+import Gallery from "./components/Gallery";
 import ImpactProof from "./components/ImpactProof";
 import Contact, { Footer } from "./components/Contact";
 
@@ -39,6 +40,7 @@ export default function App() {
         <Contact />
         <ImpactProof />
         <FeaturedWork />
+        <Gallery />
         <Trajectory />
         <About />
         <Hero />
