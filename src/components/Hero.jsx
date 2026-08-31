@@ -7,7 +7,7 @@ export default function Hero() {
       className="relative min-h-[92vh] flex flex-col justify-center px-6 pt-24"
     >
       <div
-        className="hidden lg:block absolute right-6 top-28 bottom-24 w-[38%] max-w-md rounded-3xl overflow-hidden"
+        className="hidden lg:block absolute right-[10%] top-28 bottom-24 w-[36%] max-w-md rounded-3xl overflow-hidden"
         style={{
           border: "1px solid var(--line)",
           background: "linear-gradient(160deg, var(--surface), var(--surface-2))",
@@ -46,7 +46,7 @@ export default function Hero() {
           Dari desain visual ke desain sistem operasional
         </p>
 
-        <h1 className="font-display font-semibold leading-[0.95] text-[13vw] sm:text-[9vw] md:text-[6.2vw]">
+        <h1 className="font-display font-semibold leading-[0.95] text-[13vw] sm:text-[9vw] md:text-[6.2vw] lg:max-w-[52%]">
           <span className="block">{profile.name}</span>
           <span className="block" style={{ color: "var(--accent)" }}>
             {profile.lastName}
@@ -102,17 +102,6 @@ export default function Hero() {
             </a>
           ))}
         </div>
-      </div>
-
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs"
-        style={{ color: "var(--text-dim)" }}
-      >
-        <span>Gulir</span>
-        <span
-          className="w-px h-8"
-          style={{ background: "linear-gradient(var(--text-dim), transparent)" }}
-        />
       </div>
     </section>
   );
