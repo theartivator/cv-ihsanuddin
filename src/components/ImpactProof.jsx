@@ -84,6 +84,8 @@ const clusters = [
   },
 ];
 
+const CENTER = { x: 49, y: 51 };
+
 const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
 // flatten clusters into positioned nodes + chained link segments once
@@ -102,6 +104,27 @@ const { positioned, links } = (() => {
   });
   return { positioned, links };
 })();
+
+// spokes: gentle curved line from the core to each cluster anchor
+const spokes = clusters.map((c, i) => {
+  const mx = (CENTER.x + c.anchor.x) / 2;
+  const my = (CENTER.y + c.anchor.y) / 2;
+  // bow the curve slightly so spokes don't overlap in a straight starburst
+  const bendSign = i % 2 === 0 ? 1 : -1;
+  const nx = -(c.anchor.y - CENTER.y);
+  const ny = c.anchor.x - CENTER.x;
+  const norm = Math.hypot(nx, ny) || 1;
+  const bend = 3.2 * bendSign;
+  const cx = mx + (nx / norm) * bend;
+  const cy = my + (ny / norm) * bend;
+  return {
+    id: c.id,
+    hex: c.hex,
+    d: `M ${CENTER.x} ${CENTER.y} Q ${cx} ${cy} ${c.anchor.x} ${c.anchor.y}`,
+    dur: 2.6 + (i % 4) * 0.5,
+    delay: i * 0.35,
+  };
+});
 
 function useStars(count) {
   return useMemo(
@@ -125,7 +148,7 @@ export default function ImpactProof() {
       <div className="max-w-6xl mx-auto">
         <SectionHeading eyebrow="Bukti" title="Proven, reliable!" />
         <p className="text-sm max-w-xl -mt-8 mb-10" style={{ color: "var(--text-dim)" }}>
-          Solusi dari masalahmu. Setiap angka dari pengalaman nyata, bukan proyeksi.
+          Solusi dari masalahmu. Setiap angka dari pengalaman nyata, bukan proyeksi — semua terhubung dari satu titik yang sama.
         </p>
 
         <div
@@ -150,8 +173,80 @@ export default function ImpactProof() {
             ))}
           </div>
 
-          {/* links */}
+          {/* core light bloom, sits behind everything */}
+          <div
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              left: CENTER.x + "%",
+              top: CENTER.y + "%",
+              width: 220,
+              height: 220,
+              transform: "translate(-50%, -50%)",
+              background: "radial-gradient(circle, rgba(200,215,255,0.16) 0%, rgba(143,166,255,0.07) 40%, rgba(143,166,255,0) 72%)",
+              animation: "proof-core-pulse 5s ease-in-out infinite",
+            }}
+          />
+
+          {/* spokes: core -> each cluster, chain links, and glow duplicates */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <filter id="proofGlowSoft" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="1.1" />
+              </filter>
+            </defs>
+
+            {/* soft glow pass under the spokes */}
+            <g filter="url(#proofGlowSoft)">
+              {spokes.map((s) => {
+                const active = hovered && hovered.clusterId === s.id;
+                return (
+                  <path
+                    key={"glow-" + s.id}
+                    d={s.d}
+                    fill="none"
+                    stroke={s.hex}
+                    strokeWidth={active ? 1.1 : 0.6}
+                    strokeLinecap="round"
+                    opacity={active ? 0.55 : 0.22}
+                    style={{ transition: "opacity .25s, stroke-width .25s" }}
+                  />
+                );
+              })}
+            </g>
+
+            {/* crisp spoke line */}
+            {spokes.map((s) => {
+              const active = hovered && hovered.clusterId === s.id;
+              return (
+                <path
+                  key={"spoke-" + s.id}
+                  d={s.d}
+                  fill="none"
+                  stroke={s.hex}
+                  strokeWidth={active ? 0.55 : 0.32}
+                  strokeLinecap="round"
+                  opacity={active ? 0.9 : 0.4}
+                  style={{ transition: "opacity .25s, stroke-width .25s" }}
+                />
+              );
+            })}
+
+            {/* traveling light dot along each spoke, flowing from the core outward */}
+            {spokes.map((s) => (
+              <circle key={"pulse-" + s.id} r="0.55" fill={s.hex}>
+                <animateMotion dur={`${s.dur}s`} begin={`${s.delay}s`} repeatCount="indefinite" path={s.d} />
+                <animate
+                  attributeName="opacity"
+                  values="0;1;1;0"
+                  keyTimes="0;0.15;0.85;1"
+                  dur={`${s.dur}s`}
+                  begin={`${s.delay}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            ))}
+
+            {/* existing chain links inside each cluster */}
             {links.map((l, i) => {
               const active = hovered && hovered.clusterId === l.clusterId;
               return (
@@ -165,6 +260,33 @@ export default function ImpactProof() {
               );
             })}
           </svg>
+
+          {/* core node: brain / hub */}
+          <div
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              left: CENTER.x + "%",
+              top: CENTER.y + "%",
+              width: 14,
+              height: 14,
+              transform: "translate(-50%, -50%)",
+              background: "radial-gradient(circle at 35% 30%, #ffffff, #c9d4ff 45%, #8fa6ff 100%)",
+              boxShadow: "0 0 22px 6px rgba(180,196,255,0.55), 0 0 60px 18px rgba(143,166,255,0.25)",
+              animation: "proof-core-breathe 3.2s ease-in-out infinite",
+            }}
+          />
+          <div
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              left: CENTER.x + "%",
+              top: CENTER.y + "%",
+              width: 30,
+              height: 30,
+              transform: "translate(-50%, -50%)",
+              border: "1px solid rgba(200,215,255,0.35)",
+              animation: "proof-core-ring 6s linear infinite",
+            }}
+          />
 
           {/* nodes */}
           {positioned.map((n, i) => {
@@ -243,6 +365,19 @@ export default function ImpactProof() {
         @keyframes proof-twinkle {
           0%, 100% { opacity: .15; }
           50% { opacity: .75; }
+        }
+        @keyframes proof-core-pulse {
+          0%, 100% { opacity: .7; transform: translate(-50%, -50%) scale(1); }
+          50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+        }
+        @keyframes proof-core-breathe {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); }
+          50% { transform: translate(-50%, -50%) scale(1.18); }
+        }
+        @keyframes proof-core-ring {
+          0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: .5; }
+          50% { opacity: .9; }
+          100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: .5; }
         }
       `}</style>
     </section>
