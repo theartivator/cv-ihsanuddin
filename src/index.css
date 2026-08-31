@@ -20,11 +20,23 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'><path d='M17 1C22 8 24.5 14.5 23 22L11 22C9.5 14.5 12 8 17 1Z' fill='%238fa6ff' stroke='%23e9edfb' stroke-width='1.1' stroke-linejoin='round'/><circle cx='17' cy='11.5' r='2.4' fill='%2305070f' stroke='%23e9edfb' stroke-width='0.6'/><path d='M11 17L5 24L11 21.5Z' fill='%23e8b84b' stroke='%23e9edfb' stroke-width='0.6' stroke-linejoin='round'/><path d='M23 17L29 24L23 21.5Z' fill='%23e8b84b' stroke='%23e9edfb' stroke-width='0.6' stroke-linejoin='round'/><path d='M13.5 22.5L17 32L20.5 22.5Z' fill='%23ff9a44'/></svg>") 17 4, auto;
 }
 
+/* Scroll seperti slide: tiap section penuh satu layar dan konten diletakkan
+   di tengah secara vertikal, jadi tidak ada bagian yang terpotong saat snap. */
+main > section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto; scroll-snap-type: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
