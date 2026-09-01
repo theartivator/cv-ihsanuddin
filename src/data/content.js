@@ -281,6 +281,6 @@ export const toolsForSystem = {
   title: "Perangkat yang saya pakai untuk membangun sistem.",
   description:
     "Kombinasi tools riset, desain, dan otomasi yang dipakai sehari-hari untuk merancang dashboard, campaign, dan tata kelola tim.",
-  imageUrl: null,
+  imageUrl: "/Bahan%20CV%20logo%20tools-03.png",
   imageAlt: "Kolase tools yang dipakai dalam pekerjaan",
 };
