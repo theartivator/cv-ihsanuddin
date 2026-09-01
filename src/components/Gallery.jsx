@@ -15,7 +15,7 @@ const thumbGradients = [
 export default function Gallery() {
   return (
     <section id="gallery" className="relative px-6 py-28">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <SectionHeading
           eyebrow="Galeri"
           title="Sebagian kecil dari yang pernah saya kerjakan."
