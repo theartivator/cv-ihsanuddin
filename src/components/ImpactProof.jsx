@@ -134,7 +134,7 @@ export default function ImpactProof() {
 
   return (
     <section id="proof" className="relative px-6 py-28">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <SectionHeading eyebrow="Bukti" title="Proven, reliable!" />
         <p className="text-sm max-w-xl -mt-8 mb-10" style={{ color: "var(--text-dim)" }}>
           Solusi dari masalahmu. Setiap angka dari pengalaman nyata, bukan proyeksi.
