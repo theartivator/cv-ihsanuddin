@@ -6,7 +6,7 @@ export default function Hero() {
       id="top"
       className="relative min-h-[92vh] flex flex-col justify-center px-6 pt-24"
     >
-      <div className="max-w-6xl mx-auto w-full flex flex-col lg:flex-row-reverse lg:items-center gap-12 lg:gap-16">
+      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row-reverse lg:items-center gap-12 lg:gap-16">
         <div className="flex-1 min-w-0">
           <p
             className="text-sm mb-6"
