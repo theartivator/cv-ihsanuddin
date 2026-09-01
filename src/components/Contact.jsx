@@ -3,7 +3,7 @@ import { profile, social } from "../data/content";
 export default function Contact() {
   return (
     <section id="contact" className="relative px-6 py-28">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-start gap-10 md:gap-16">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-start gap-10 md:gap-16">
         <div className="flex flex-col items-center gap-3 shrink-0 md:w-40">
           <div
             className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden"
