@@ -3,7 +3,7 @@ import { projectsInternship } from "../data/content";
 const LOGO_PALETTE = ["#8fa6ff", "#e8b84b", "#5dd9b0", "#ff9a44", "#c792ea"];
 
 // Dinding logo proyek & magang — sekarang section sendiri (slide sendiri
-// saat scroll-snap), terpisah dari Perjalanan. 10 slot (5 atas, 5 bawah).
+// saat scroll-snap), terpisah dari Perjalanan. 15 slot, 3 baris x 5 kolom.
 // Tiap organisasi tampil sebagai wordmark singkat berwarna selama logoUrl
 // belum diisi; begitu logoUrl terisi di `projectsInternship`
 // (src/data/content.js), wordmark otomatis diganti gambar logo aslinya.
@@ -16,7 +16,7 @@ export default function Projects() {
             Proyek &amp; Magang
           </p>
           <p className="text-xs font-mono-num" style={{ color: "var(--text-dim)" }}>
-            {String(projectsInternship.length).padStart(2, "0")} / 10
+            {String(projectsInternship.length).padStart(2, "0")} / 15
           </p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
