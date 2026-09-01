@@ -7,6 +7,7 @@ import About from "./components/About";
 import Trajectory from "./components/Trajectory";
 import Projects from "./components/Projects";
 import FeaturedWork from "./components/FeaturedWork";
+import ToolsForSystem from "./components/ToolsForSystem";
 import Gallery from "./components/Gallery";
 import ImpactProof from "./components/ImpactProof";
 import Contact, { Footer } from "./components/Contact";
@@ -41,6 +42,7 @@ export default function App() {
         <Contact />
         <ImpactProof />
         <FeaturedWork />
+        <ToolsForSystem />
         <Gallery />
         <Trajectory />
         <Projects />
