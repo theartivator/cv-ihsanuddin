@@ -114,6 +114,11 @@ export const projectsInternship = [
   { org: "Slot Logo 8", short: "08", period: "", logoUrl: null },
   { org: "Slot Logo 9", short: "09", period: "", logoUrl: null },
   { org: "Slot Logo 10", short: "10", period: "", logoUrl: null },
+  { org: "Slot Logo 11", short: "11", period: "", logoUrl: null },
+  { org: "Slot Logo 12", short: "12", period: "", logoUrl: null },
+  { org: "Slot Logo 13", short: "13", period: "", logoUrl: null },
+  { org: "Slot Logo 14", short: "14", period: "", logoUrl: null },
+  { org: "Slot Logo 15", short: "15", period: "", logoUrl: null },
 ];
 
 export const featuredWork = [
