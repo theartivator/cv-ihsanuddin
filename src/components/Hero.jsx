@@ -6,13 +6,13 @@ export default function Hero() {
       id="top"
       className="relative min-h-[92vh] flex flex-col justify-center px-6 pt-24"
     >
-      <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row-reverse lg:items-center gap-12 lg:gap-16">
+      <div className="max-w-6xl mx-auto w-full flex flex-col lg:flex-row-reverse lg:items-center gap-12 lg:gap-16">
         <div className="flex-1 min-w-0">
           <p
             className="text-sm mb-6"
             style={{ color: "var(--text-dim)" }}
           >
-            Dari desain visual ke desain sistem operasional
+            {profile.heroEyebrow}
           </p>
 
           <h1 className="font-display font-semibold leading-[0.95] text-[13vw] sm:text-[9vw] md:text-[6.2vw]">
