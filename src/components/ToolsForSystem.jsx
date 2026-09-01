@@ -10,7 +10,7 @@ export default function ToolsForSystem() {
 
   return (
     <section id="tools" className="relative px-6 py-16 md:py-20">
-      <div className="max-w-5xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full">
         <SectionHeading eyebrow={eyebrow} title={title} />
         {description && (
           <p
