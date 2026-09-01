@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Cursor from "./components/Cursor";
 import NetworkBackground from "./components/NetworkBackground";
 import AmbientHUD from "./components/AmbientHUD";
 import Nav from "./components/Nav";
@@ -35,6 +36,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen">
+      <Cursor />
       <NetworkBackground />
       <AmbientHUD />
       <Nav />

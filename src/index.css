@@ -21,7 +21,22 @@
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'><path d='M17 1C22 8 24.5 14.5 23 22L11 22C9.5 14.5 12 8 17 1Z' fill='%238fa6ff' stroke='%23e9edfb' stroke-width='1.1' stroke-linejoin='round'/><circle cx='17' cy='11.5' r='2.4' fill='%2305070f' stroke='%23e9edfb' stroke-width='0.6'/><path d='M11 17L5 24L11 21.5Z' fill='%23e8b84b' stroke='%23e9edfb' stroke-width='0.6' stroke-linejoin='round'/><path d='M23 17L29 24L23 21.5Z' fill='%23e8b84b' stroke='%23e9edfb' stroke-width='0.6' stroke-linejoin='round'/><path d='M13.5 22.5L17 32L20.5 22.5Z' fill='%23ff9a44'/></svg>") 17 4, auto;
+}
+
+/* Cursor roket kustom (lihat components/Cursor.jsx) menggantikan cursor
+   bawaan OS hanya di perangkat dengan mouse presisi; di layar sentuh
+   cursor default browser tetap dipakai. */
+html.has-rocket-cursor {
+  cursor: none;
+}
+html.has-rocket-cursor a,
+html.has-rocket-cursor button,
+html.has-rocket-cursor [role="button"],
+html.has-rocket-cursor input,
+html.has-rocket-cursor select,
+html.has-rocket-cursor textarea,
+html.has-rocket-cursor label {
+  cursor: none;
 }
 
 /* Scroll seperti slide: tiap section penuh satu layar dan konten diletakkan
@@ -86,3 +101,103 @@ a { color: inherit; }
 .scroll-thin::-webkit-scrollbar { width: 6px; }
 .scroll-thin::-webkit-scrollbar-track { background: transparent; }
 .scroll-thin::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 6px; }
+
+/* =========================================================
+   Rocket cursor — lihat src/components/Cursor.jsx
+   ========================================================= */
+.rocket-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  will-change: transform;
+  filter: drop-shadow(0 0 10px rgba(255, 60, 40, 0.35));
+  transition: opacity 0.15s ease;
+}
+
+.rocket-cursor--hidden {
+  opacity: 0;
+}
+
+.rocket-cursor__hull path,
+.rocket-cursor__hull circle {
+  fill: var(--text);
+  stroke: var(--bg);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.rocket-cursor__window {
+  fill: var(--bg) !important;
+  stroke: var(--text) !important;
+  stroke-width: 1.2 !important;
+}
+
+.rocket-cursor__flame {
+  transform-origin: 0px 0px;
+  transform-box: fill-box;
+}
+
+.rocket-cursor__flame--outer {
+  fill: #8a1210;
+  opacity: 0.85;
+  animation: flameFlickerOuter 460ms ease-in-out infinite;
+}
+
+.rocket-cursor__flame--mid {
+  fill: #e2231a;
+  opacity: 0.92;
+  animation: flameFlickerMid 340ms ease-in-out infinite;
+  animation-delay: 60ms;
+}
+
+.rocket-cursor__flame--inner {
+  fill: #ff6a3d;
+  opacity: 0.98;
+  animation: flameFlickerInner 260ms ease-in-out infinite;
+  animation-delay: 30ms;
+}
+
+.rocket-cursor--boost .rocket-cursor__flames {
+  animation: flameBoostShake 90ms linear infinite;
+}
+.rocket-cursor--boost .rocket-cursor__flame--outer {
+  animation-duration: 220ms;
+}
+.rocket-cursor--boost .rocket-cursor__flame--mid {
+  animation-duration: 160ms;
+}
+.rocket-cursor--boost .rocket-cursor__flame--inner {
+  animation-duration: 120ms;
+}
+
+@keyframes flameFlickerOuter {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.8; }
+  30% { transform: scaleY(1.22) scaleX(0.9); opacity: 1; }
+  55% { transform: scaleY(0.88) scaleX(1.08); opacity: 0.7; }
+  80% { transform: scaleY(1.12) scaleX(0.95); opacity: 0.92; }
+}
+
+@keyframes flameFlickerMid {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.85; }
+  35% { transform: scaleY(1.28) scaleX(0.88); opacity: 1; }
+  65% { transform: scaleY(0.85) scaleX(1.1); opacity: 0.78; }
+}
+
+@keyframes flameFlickerInner {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.9; }
+  40% { transform: scaleY(1.35) scaleX(0.85); opacity: 1; }
+  70% { transform: scaleY(0.82) scaleX(1.12); opacity: 0.85; }
+}
+
+@keyframes flameBoostShake {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(0.6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rocket-cursor__flame {
+    animation: none !important;
+  }
+}
