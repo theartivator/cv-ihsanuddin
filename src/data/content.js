@@ -272,3 +272,15 @@ export const training = [
   { name: "Grounded Total Marketing (GTM)", period: "2023" },
   { name: "Grounded Digital Marketing (GDM)", period: "2023" },
 ];
+
+// Satu gambar wide 16:9 (mis. screenshot/kolase tools kerja). imageUrl diisi
+// setelah file di-upload ke repo (public/) lewat GitHub — kosongkan lagi
+// (null) kalau mau ganti gambar nanti.
+export const toolsForSystem = {
+  eyebrow: "Tools for Your System",
+  title: "Perangkat yang saya pakai untuk membangun sistem.",
+  description:
+    "Kombinasi tools riset, desain, dan otomasi yang dipakai sehari-hari untuk merancang dashboard, campaign, dan tata kelola tim.",
+  imageUrl: null,
+  imageAlt: "Kolase tools yang dipakai dalam pekerjaan",
+};
