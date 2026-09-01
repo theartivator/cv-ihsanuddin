@@ -1,9 +1,9 @@
-import { profile, social } from "../data/content";
+import { profile, social, contact } from "../data/content";
 
 export default function Contact() {
   return (
     <section id="contact" className="relative px-6 py-28">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-start gap-10 md:gap-16">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-start gap-10 md:gap-16">
         <div className="flex flex-col items-center gap-3 shrink-0 md:w-40">
           <div
             className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden"
@@ -32,7 +32,7 @@ export default function Contact() {
               border: "1px solid rgba(52, 211, 153, 0.35)",
             }}
           >
-            Open to Scale Up
+            {profile.openToWorkBadge}
           </span>
         </div>
 
@@ -41,15 +41,13 @@ export default function Contact() {
             Kontak
           </p>
           <h2 className="font-display font-semibold text-3xl md:text-5xl max-w-2xl leading-tight mb-8">
-            Terbuka untuk kolaborasi lintas tim dan peran baru.
+            {contact.headline}
           </h2>
           <p
             className="max-w-lg text-base leading-relaxed mb-10"
             style={{ color: "var(--text-muted)" }}
           >
-            Kalau ada tim yang butuh orang untuk merapikan sistem operasional
-            sekaligus menjaga sisi brand-nya tetap hidup, atau sekadar mau
-            diskusi soal inovasi dan tata kelola — silakan hubungi saya.
+            {contact.paragraph}
           </p>
 
           <div className="flex flex-wrap gap-4">
