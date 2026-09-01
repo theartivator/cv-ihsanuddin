@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Trajectory from "./components/Trajectory";
+import Projects from "./components/Projects";
 import FeaturedWork from "./components/FeaturedWork";
 import Gallery from "./components/Gallery";
 import ImpactProof from "./components/ImpactProof";
@@ -42,6 +43,7 @@ export default function App() {
         <FeaturedWork />
         <Gallery />
         <Trajectory />
+        <Projects />
         <About />
         <Hero />
       </main>
