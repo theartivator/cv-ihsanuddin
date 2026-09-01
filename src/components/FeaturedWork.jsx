@@ -4,7 +4,7 @@ import SectionHeading from "./SectionHeading";
 export default function FeaturedWork() {
   return (
     <section id="work" className="relative px-6 py-28">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <SectionHeading eyebrow="Karya" title="Sistem dan kampanye yang saya bangun." />
 
         <div className="grid md:grid-cols-3 gap-6">
