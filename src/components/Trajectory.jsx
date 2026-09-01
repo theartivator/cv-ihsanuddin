@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { experience, education, training, projectsInternship } from "../data/content";
+import { experience, education, training } from "../data/content";
 import SectionHeading from "./SectionHeading";
 
 // Tiga kolom paralel (kerja / pendidikan / pelatihan) menggantikan satu
@@ -11,8 +11,6 @@ const COLUMN_META = {
   pendidikan: { label: "Pendidikan", color: "var(--gold)" },
   pelatihan: { label: "Pelatihan", color: "#5dd9b0" },
 };
-
-const LOGO_PALETTE = ["#8fa6ff", "#e8b84b", "#5dd9b0", "#ff9a44", "#c792ea"];
 
 export default function Trajectory() {
   return (
@@ -41,7 +39,6 @@ export default function Trajectory() {
           }))} />
         </div>
 
-        <ProjectsLogoWall />
       </div>
     </section>
   );
@@ -179,65 +176,5 @@ function Chevron({ open, color }) {
     >
       <path d="M3 5.5L7 9.5L11 5.5" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
-  );
-}
-
-// Dinding logo proyek & magang — 10 slot (5 atas, 5 bawah). Tiap organisasi
-// tampil sebagai wordmark singkat berwarna selama logoUrl belum diisi;
-// begitu logoUrl terisi di `projectsInternship` (src/data/content.js),
-// wordmark otomatis diganti gambar logo aslinya.
-function ProjectsLogoWall() {
-  return (
-    <div className="mt-10 md:mt-12">
-      <div className="flex items-baseline justify-between mb-4">
-        <p className="text-sm" style={{ color: "var(--text-dim)" }}>
-          Proyek &amp; Magang
-        </p>
-        <p className="text-xs font-mono-num" style={{ color: "var(--text-dim)" }}>
-          {String(projectsInternship.length).padStart(2, "0")} / 10
-        </p>
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-        {projectsInternship.map((p, i) => (
-          <LogoTile key={p.org} project={p} color={LOGO_PALETTE[i % LOGO_PALETTE.length]} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function LogoTile({ project, color }) {
-  return (
-    <div
-      className="group relative aspect-[4/3] rounded-xl flex flex-col items-center justify-center gap-1.5 px-2 text-center transition-all duration-200 overflow-hidden"
-      style={{ border: "1px solid var(--line)", background: "var(--surface)" }}
-      title={project.period ? `${project.org} · ${project.period}` : project.org}
-    >
-      {project.logoUrl ? (
-        <img
-          src={project.logoUrl}
-          alt={project.org}
-          className="max-w-[70%] max-h-[60%] object-contain"
-        />
-      ) : (
-        <span
-          className="font-display font-semibold text-sm md:text-base tracking-wide transition-colors duration-200"
-          style={{ color: "var(--text-muted)" }}
-        >
-          <span className="group-hover:hidden">{project.short}</span>
-          <span className="hidden group-hover:inline" style={{ color }}>
-            {project.short}
-          </span>
-        </span>
-      )}
-      {project.period && (
-        <span
-          className="text-[10px] font-mono-num opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-          style={{ color: "var(--text-dim)" }}
-        >
-          {project.period}
-        </span>
-      )}
-    </div>
   );
 }
