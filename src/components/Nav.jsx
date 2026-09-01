@@ -22,7 +22,7 @@ export default function Nav() {
         backdropFilter: "blur(6px)",
       }}
     >
-      <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <a
           href="#top"
           className="font-display font-semibold text-sm tracking-wide"
