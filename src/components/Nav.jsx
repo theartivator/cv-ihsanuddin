@@ -6,6 +6,7 @@ const links = [
   { href: "#proof", label: "Bukti" },
   { href: "#work", label: "Karya" },
   { href: "#experience", label: "Perjalanan" },
+  { href: "#projects", label: "Proyek" },
   { href: "#about", label: "Tentang" },
 ];
 
