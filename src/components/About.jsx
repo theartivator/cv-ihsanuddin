@@ -4,7 +4,7 @@ import SectionHeading from "./SectionHeading";
 export default function About() {
   return (
     <section id="about" className="relative px-6 py-28">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <SectionHeading eyebrow="Tentang" title={about.heading} />
 
         <div className="grid md:grid-cols-5 gap-12">
