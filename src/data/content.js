@@ -18,7 +18,7 @@ export const profile = {
   email: "artivator@gmail.com",
   phone: "+62 857 7545 4715",
   resumeUrl: "/resume.pdf",
-  photoUrl: "/Bahan CV-01.png",
+  photoUrl: "/ChatGPT%20Image%20Sep%203%2C%202026%2C%2010_26_46%20AM.png",
   openToWorkPhotoUrl: null,
   openToWorkBadge: "Open to Scale Up",
 };
@@ -145,7 +145,7 @@ export const featuredWork = [
   },
   {
     tag: "Growth & Fundraising",
-    title: "Platform Crowdfunding — Bantu Sesama",
+    title: "Platform Crowdfunding – Bantu Sesama",
     org: "UCare Indonesia · 2021 – 2024",
     context:
       "Penghimpunan donasi butuh kanal digital yang mudah diakses basis kemitraan maupun retail, sekaligus mencerminkan brand lembaga secara konsisten.",
