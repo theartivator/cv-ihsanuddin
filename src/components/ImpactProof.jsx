@@ -3,71 +3,71 @@ import SectionHeading from "./SectionHeading";
 
 const clusters = [
   {
-    id: "design", label: "Skill Desain", hex: "#1dffa8", anchor: { x: 15, y: 47 },
+    id: "design", label: "Skill Desain", hex: "#1dffa8", anchor: { x: 62.5, y: 50 },
     nodes: [
-      { dx: -8, dy: -17, size: 24, value: "120+", desc: "Proyek desain yang selesai dan dikirim ke klien." },
-      { dx: -1, dy: -25, size: 11, value: "95%", desc: "Desain disetujui pada iterasi pertama." },
-      { dx: 6, dy: -9, size: 15, value: "3x", desc: "Lebih cepat dari brief ke mockup final." },
+      { dx: -4.79, dy: -10.18, size: 24, value: "120+", desc: "Proyek desain yang selesai dan dikirim ke klien." },
+      { dx: -0.6, dy: -14.97, size: 11, value: "95%", desc: "Desain disetujui pada iterasi pertama." },
+      { dx: 3.59, dy: -5.39, size: 15, value: "3x", desc: "Lebih cepat dari brief ke mockup final." },
     ],
   },
   {
-    id: "konsep", label: "Skill Konsep", hex: "#ffd60a", anchor: { x: 40, y: 26 },
+    id: "konsep", label: "Skill Konsep", hex: "#ffd60a", anchor: { x: 58.84, y: 64.14 },
     nodes: [
-      { dx: -1, dy: -9, size: 26, value: "8/8", desc: "Konsep tervalidasi lewat riset sebelum eksekusi." },
-      { dx: 7, dy: -16, size: 12, value: "92%", desc: "Kesesuaian hasil akhir dengan ide awal." },
-      { dx: -7, dy: -3, size: 14, value: "99+", desc: "Mind mapping melihat masalah yang harus diselesaikan." },
+      { dx: -0.77, dy: -6.91, size: 26, value: "8/8", desc: "Konsep tervalidasi lewat riset sebelum eksekusi." },
+      { dx: 5.38, dy: -12.29, size: 12, value: "92%", desc: "Kesesuaian hasil akhir dengan ide awal." },
+      { dx: -5.38, dy: -2.3, size: 14, value: "99+", desc: "Mind mapping melihat masalah yang harus diselesaikan." },
     ],
   },
   {
-    id: "intuit", label: "Intuiting Extrovert (STIFIN)", hex: "#c04dff", anchor: { x: 45, y: 79 },
+    id: "intuit", label: "Intuiting Extrovert (STIFIN)", hex: "#c04dff", anchor: { x: 50, y: 30 },
     nodes: [
-      { dx: -9, dy: -19, size: 26, value: "Ie", desc: "Tipe mesin kecerdasan hasil tes STIFIN." },
-      { dx: -3, dy: -27, size: 12, value: "2+", desc: "Individu yang telah dipetakan potensinya." },
-      { dx: 5, dy: -22, size: 11, value: "++", desc: "Reformer" },
-      { dx: 11, dy: -14, size: 11, value: "++", desc: "Quality" },
-      { dx: 13, dy: -4, size: 11, value: "++", desc: "Assembler" },
-      { dx: 10, dy: 6, size: 11, value: "++", desc: "Innovation" },
-      { dx: 2, dy: 11, size: 11, value: "++", desc: "Forecaster" },
-      { dx: -7, dy: 9, size: 11, value: "++", desc: "Solver" },
-      { dx: -13, dy: 1, size: 11, value: "++", desc: "Genuine" },
-      { dx: -11, dy: -8, size: 10, value: "++", desc: "Benchmarker" },
+      { dx: -4.92, dy: -10.39, size: 26, value: "Ie", desc: "Tipe mesin kecerdasan hasil tes STIFIN." },
+      { dx: -1.64, dy: -14.77, size: 12, value: "2+", desc: "Individu yang telah dipetakan potensinya." },
+      { dx: 2.73, dy: -12.03, size: 11, value: "++", desc: "Reformer" },
+      { dx: 6.02, dy: -7.66, size: 11, value: "++", desc: "Quality" },
+      { dx: 7.11, dy: -2.19, size: 11, value: "++", desc: "Assembler" },
+      { dx: 5.47, dy: 3.28, size: 11, value: "++", desc: "Innovation" },
+      { dx: 1.09, dy: 6.02, size: 11, value: "++", desc: "Forecaster" },
+      { dx: -3.83, dy: 4.92, size: 11, value: "++", desc: "Solver" },
+      { dx: -7.11, dy: 0.55, size: 11, value: "++", desc: "Genuine" },
+      { dx: -6.02, dy: -4.38, size: 10, value: "++", desc: "Benchmarker" },
     ],
   },
   {
-    id: "pribadi", label: "Skill di Pribadi", hex: "#ff3d71", anchor: { x: 14, y: 76 },
+    id: "pribadi", label: "Skill di Pribadi", hex: "#ff3d71", anchor: { x: 58.84, y: 35.86 },
     nodes: [
-      { dx: -5, dy: -8, size: 23, value: "4.9", desc: "Rating personal branding dari rekan & klien." },
-      { dx: 2, dy: -16, size: 11, value: "12th", desc: "Konsistensi jejak rekam personal." },
-      { dx: 8, dy: -5, size: 11, value: "15th", desc: "As Graphic designer" },
-      { dx: 5, dy: 6, size: 10, value: "2nd", desc: "Month Deep Dive AI" },
+      { dx: -4.6, dy: -7.35, size: 23, value: "4.9", desc: "Rating personal branding dari rekan & klien." },
+      { dx: 1.84, dy: -14.71, size: 11, value: "12th", desc: "Konsistensi jejak rekam personal." },
+      { dx: 7.35, dy: -4.6, size: 11, value: "15th", desc: "As Graphic designer" },
+      { dx: 4.6, dy: 5.52, size: 10, value: "2nd", desc: "Month Deep Dive AI" },
     ],
   },
   {
-    id: "team", label: "Skill Teamwork", hex: "#3d9dff", anchor: { x: 66, y: 82 },
+    id: "team", label: "Skill Teamwork", hex: "#3d9dff", anchor: { x: 41.16, y: 35.86 },
     nodes: [
-      { dx: -7, dy: -9, size: 25, value: "25+", desc: "Tim lintas fungsi yang pernah dipimpin/didampingi." },
-      { dx: 0, dy: -18, size: 11, value: "98%", desc: "Tingkat retensi anggota dalam tim yang sama." },
-      { dx: 8, dy: -13, size: 10, value: "+++", desc: "Responsible" },
-      { dx: 12, dy: -3, size: 10, value: "+++", desc: "Listener" },
-      { dx: 10, dy: 6, size: 10, value: "+++", desc: "Management Conflict" },
-      { dx: 2, dy: 12, size: 11, value: "++++", desc: "Problem Solver" },
-      { dx: -8, dy: 9, size: 10, value: "+++", desc: "Agile" },
-      { dx: -12, dy: 0, size: 9, value: "++", desc: "Adaptive" },
+      { dx: -5.4, dy: -6.95, size: 25, value: "25+", desc: "Tim lintas fungsi yang pernah dipimpin/didampingi." },
+      { dx: 0, dy: -13.89, size: 11, value: "98%", desc: "Tingkat retensi anggota dalam tim yang sama." },
+      { dx: 6.18, dy: -10.03, size: 10, value: "+++", desc: "Responsible" },
+      { dx: 9.26, dy: -2.32, size: 10, value: "+++", desc: "Listener" },
+      { dx: 7.72, dy: 4.63, size: 10, value: "+++", desc: "Management Conflict" },
+      { dx: 1.54, dy: 9.26, size: 11, value: "++++", desc: "Problem Solver" },
+      { dx: -6.18, dy: 6.95, size: 10, value: "+++", desc: "Agile" },
+      { dx: -9.26, dy: 0, size: 9, value: "++", desc: "Adaptive" },
     ],
   },
   {
-    id: "ai", label: "Artificial Intelligence", hex: "#00eaff", anchor: { x: 82, y: 44 },
+    id: "ai", label: "Artificial Intelligence", hex: "#00eaff", anchor: { x: 50, y: 70 },
     nodes: [
-      { dx: -7, dy: -9, size: 25, value: "40+", desc: "Tools/alur kerja berbasis AI yang dibangun." },
-      { dx: 0, dy: -17, size: 11, value: "99%", desc: "Akurasi proses yang diotomasi." },
-      { dx: 7, dy: -6, size: 14, value: "3+", desc: "User Artificial Intelligence LLM" },
-      { dx: 9, dy: 3, size: 11, value: "++", desc: "N8N Automation Workflow" },
-      { dx: -2, dy: 8, size: 12, value: "90%", desc: "Menuju Automasi System Kerja" },
-      { dx: -9, dy: 1, size: 11, value: ">3", desc: "Build AI Agent dengan Hermes" },
+      { dx: -6.18, dy: -7.94, size: 25, value: "40+", desc: "Tools/alur kerja berbasis AI yang dibangun." },
+      { dx: 0, dy: -15, size: 11, value: "99%", desc: "Akurasi proses yang diotomasi." },
+      { dx: 6.18, dy: -5.29, size: 14, value: "3+", desc: "User Artificial Intelligence LLM" },
+      { dx: 7.94, dy: 2.65, size: 11, value: "++", desc: "N8N Automation Workflow" },
+      { dx: -1.76, dy: 7.06, size: 12, value: "90%", desc: "Menuju Automasi System Kerja" },
+      { dx: -7.94, dy: 0.88, size: 11, value: ">3", desc: "Build AI Agent dengan Hermes" },
     ],
   },
   {
-    id: "creative", label: "Creative Design", hex: "#ff8c1a", anchor: { x: 66, y: 59 },
+    id: "creative", label: "Creative Design", hex: "#ff8c1a", anchor: { x: 37.5, y: 50 },
     nodes: [
       { dx: -6, dy: -8, size: 24, value: "+++", desc: "Brand Identity" },
       { dx: 0, dy: -15, size: 11, value: "++", desc: "Logo Design" },
@@ -76,7 +76,7 @@ const clusters = [
     ],
   },
   {
-    id: "assembler", label: "Concepting & Assembler", hex: "#baff29", anchor: { x: 89, y: 71 },
+    id: "assembler", label: "Concepting & Assembler", hex: "#baff29", anchor: { x: 41.16, y: 64.14 },
     nodes: [
       { dx: -6, dy: -8, size: 24, value: "60+", desc: "Sistem/komponen berbeda berhasil dirakit jadi satu." },
       { dx: 0, dy: -15, size: 11, value: "18", desc: "Produk end-to-end yang dirilis." },
@@ -90,24 +90,27 @@ const CORE = { x: 50, y: 50 };
 
 const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
-// flatten clusters into positioned nodes + chained link segments once
+// flatten clusters into positioned nodes. Every non-head node links straight
+// to its cluster's head (star topology) — never to a sibling.
 const { positioned, links } = (() => {
   const positioned = [];
   const links = [];
   clusters.forEach((cluster) => {
-    let prev = cluster.anchor;
-    cluster.nodes.forEach((n) => {
+    const headX = cluster.anchor.x;
+    const headY = cluster.anchor.y;
+    cluster.nodes.forEach((n, idx) => {
       const x = clamp(cluster.anchor.x + n.dx, 3, 97);
       const y = clamp(cluster.anchor.y + n.dy, 3, 97);
-      links.push({ from: prev, to: { x, y }, clusterId: cluster.id });
-      prev = { x, y };
-      positioned.push({ ...n, x, y, clusterId: cluster.id, clusterLabel: cluster.label, hex: cluster.hex });
+      if (idx > 0) {
+        links.push({ from: { x: headX, y: headY }, to: { x, y }, clusterId: cluster.id });
+      }
+      positioned.push({ ...n, x, y, isHead: idx === 0, clusterId: cluster.id, clusterLabel: cluster.label, hex: cluster.hex });
     });
   });
   return { positioned, links };
 })();
 
-// light beams flowing OUTWARD: from the central core toward each cluster anchor
+// light beams flowing OUTWARD: from the central core toward each cluster head
 const coreLinks = clusters.map((c, i) => ({
   id: c.id,
   hex: c.hex,
@@ -117,13 +120,14 @@ const coreLinks = clusters.map((c, i) => ({
   duration: (3.2 + (i % 4) * 0.5).toFixed(2),
 }));
 
-// the biggest / first node of every cluster acts as its labelled "head"
+// every cluster head gets its label written out, pushed a little further
+// from the core so it doesn't sit on top of the node itself
 const heads = clusters.map((c) => {
   const head = positioned.find((p) => p.clusterId === c.id);
   const dx = head.x - CORE.x;
   const dy = head.y - CORE.y;
   const len = Math.hypot(dx, dy) || 1;
-  const push = head.size * 0.11 + 8;
+  const push = head.size * 0.1 + 6.5;
   return {
     id: c.id,
     label: c.label,
@@ -182,7 +186,7 @@ export default function ImpactProof() {
 
           {/* everything that orbits the core: links, nodes, head labels */}
           <div className="absolute inset-0 proof-orbit-wrap">
-            {/* cluster-internal links — flow outward from head to leaves */}
+            {/* every child skill connects straight to its head skill (star topology) */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               {links.map((l, i) => {
                 const active = hovered && hovered.clusterId === l.clusterId;
@@ -213,7 +217,7 @@ export default function ImpactProof() {
               })}
             </svg>
 
-            {/* beams flowing outward from the central core to every cluster */}
+            {/* then every head skill connects to the central core */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               {coreLinks.map((l) => {
                 const active = hovered && hovered.clusterId === l.id;
