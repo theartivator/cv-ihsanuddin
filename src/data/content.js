@@ -36,7 +36,7 @@ export const social = [
 ];
 
 export const contact = {
-  headline: "Open to Scale Up & Let's Build Something That Works.",
+  headline: "Open to Growth & Let's Build Something That Works.",
   paragraph:
     "Open to project collaborations and new roles on teams that value both operational excellence, governance, and strong brand presence.",
 };

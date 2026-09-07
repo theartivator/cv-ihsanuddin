@@ -3,10 +3,10 @@ import { profile, social, contact } from "../data/content";
 export default function Contact() {
   return (
     <section id="contact" className="relative px-6 py-28">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-start gap-10 md:gap-16">
-        <div className="flex flex-col items-center gap-3 shrink-0 md:w-40">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center gap-10 md:gap-16">
+        <div className="flex flex-col items-center shrink-0 md:w-56">
           <div
-            className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden"
+            className="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden"
             style={{ border: "2px solid var(--accent)", background: "var(--surface)" }}
           >
             {profile.openToWorkPhotoUrl ? (
@@ -24,16 +24,6 @@ export default function Contact() {
               </div>
             )}
           </div>
-          <span
-            className="text-sm px-4 py-2 rounded-full text-center whitespace-nowrap font-medium"
-            style={{
-              background: "rgba(52, 211, 153, 0.14)",
-              color: "#34d399",
-              border: "1px solid rgba(52, 211, 153, 0.35)",
-            }}
-          >
-            {profile.openToWorkBadge}
-          </span>
         </div>
 
         <div className="flex-1">
