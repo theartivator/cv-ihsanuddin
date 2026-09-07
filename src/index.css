@@ -112,7 +112,7 @@ a { color: inherit; }
   z-index: 2147483647;
   pointer-events: none;
   will-change: transform;
-  filter: drop-shadow(0 0 10px rgba(255, 60, 40, 0.35));
+  filter: drop-shadow(0 0 10px rgba(70, 140, 255, 0.4));
   transition: opacity 0.15s ease;
 }
 
@@ -134,26 +134,33 @@ a { color: inherit; }
   stroke-width: 1.2 !important;
 }
 
+.rocket-cursor__nozzle {
+  fill: var(--bg) !important;
+  stroke: var(--text) !important;
+  stroke-width: 1.1 !important;
+  opacity: 0.9;
+}
+
 .rocket-cursor__flame {
   transform-origin: 0px 0px;
   transform-box: fill-box;
 }
 
 .rocket-cursor__flame--outer {
-  fill: #8a1210;
+  fill: #12328a;
   opacity: 0.85;
   animation: flameFlickerOuter 460ms ease-in-out infinite;
 }
 
 .rocket-cursor__flame--mid {
-  fill: #e2231a;
+  fill: #2d6df6;
   opacity: 0.92;
   animation: flameFlickerMid 340ms ease-in-out infinite;
   animation-delay: 60ms;
 }
 
 .rocket-cursor__flame--inner {
-  fill: #ff6a3d;
+  fill: #bfe4ff;
   opacity: 0.98;
   animation: flameFlickerInner 260ms ease-in-out infinite;
   animation-delay: 30ms;
