@@ -1,0 +1,41 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#123024"/>
+      <stop offset="100%" stop-color="#080f0d"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg3)"/>
+  <line x1="211.3" y1="323.0" x2="306.4" y2="354.0" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="211.3" y1="323.0" x2="226.7" y2="161.9" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="306.4" y1="354.0" x2="416.7" y2="425.5" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="490.5" y1="74.1" x2="500.1" y2="118.3" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="490.5" y1="74.1" x2="523.4" y2="73.3" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="226.7" y1="161.9" x2="256.9" y2="56.1" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="756.9" y1="284.5" x2="642.3" y2="287.7" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="756.9" y1="284.5" x2="663.2" y2="285.8" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="642.3" y1="287.7" x2="585.9" y2="347.4" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="642.3" y1="287.7" x2="663.2" y2="285.8" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="500.1" y1="118.3" x2="523.4" y2="73.3" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="497.1" y1="491.4" x2="416.7" y2="425.5" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="497.1" y1="491.4" x2="585.9" y2="347.4" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><line x1="585.9" y1="347.4" x2="663.2" y2="285.8" stroke="#5dd9b0" stroke-width="1" opacity="0.18"/><circle cx="211.3" cy="323.0" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="306.4" cy="354.0" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="490.5" cy="74.1" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="49.5" cy="475.5" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="226.7" cy="161.9" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="756.9" cy="284.5" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="642.3" cy="287.7" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="500.1" cy="118.3" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="497.1" cy="491.4" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="416.7" cy="425.5" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="523.4" cy="73.3" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="585.9" cy="347.4" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="256.9" cy="56.1" r="2.2" fill="#5dd9b0" opacity="0.43"/><circle cx="663.2" cy="285.8" r="2.2" fill="#5dd9b0" opacity="0.43"/>
+  
+<g transform="translate(400,300)">
+  <path id="heart3" d="M0,60 C -90,-10 -70,-100 0,-40 C 70,-100 90,-10 0,60 Z" fill="none"/>
+  <path d="M0,55 C -80,-8 -62,-90 0,-36 C 62,-90 80,-8 0,55 Z" fill="url(#heartfill)" opacity="0.18"/>
+  <defs>
+    <radialGradient id="heartfill" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#e8b84b"/>
+      <stop offset="100%" stop-color="#5dd9b0"/>
+    </radialGradient>
+  </defs>
+  <g stroke="#e8b84b" stroke-width="1.4" opacity="0.55">
+    <line x1="0" y1="-36" x2="-45" y2="-55"/>
+    <line x1="0" y1="-36" x2="45" y2="-55"/>
+    <line x1="0" y1="-36" x2="0" y2="10"/>
+    <line x1="-45" y1="-55" x2="-70" y2="0"/>
+    <line x1="45" y1="-55" x2="70" y2="0"/>
+    <line x1="-70" y1="0" x2="0" y2="10"/>
+    <line x1="70" y1="0" x2="0" y2="10"/>
+    <line x1="0" y1="10" x2="0" y2="50"/>
+  </g>
+  <g fill="#e8b84b">
+    <circle cx="0" cy="-36" r="6"/>
+    <circle cx="-45" cy="-55" r="5"/>
+    <circle cx="45" cy="-55" r="5"/>
+    <circle cx="-70" cy="0" r="5" fill="#5dd9b0"/>
+    <circle cx="70" cy="0" r="5" fill="#5dd9b0"/>
+    <circle cx="0" cy="10" r="6" fill="#5dd9b0"/>
+    <circle cx="0" cy="50" r="7" fill="#e8b84b"/>
+  </g>
+</g>
+
+</svg>

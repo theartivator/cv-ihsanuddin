@@ -219,52 +219,53 @@ export const gallery = {
       tag: "Annual Report",
       title: "Annual & Sustainability Report Pelindo",
       org: "Menara Maritim Indonesia · 2024",
-      imageUrl: null,
+      imageUrl: "/gallery/gallery-01.svg",
     },
     {
       tag: "Annual Report",
       title: "Annual Report Pelindo",
       org: "Menara Maritim Indonesia · 2023",
-      imageUrl: null,
+      imageUrl: "/gallery/gallery-02.svg",
     },
     {
       tag: "Crowdfunding",
       title: "Platform Donasi Bantu Sesama",
       org: "Bantu Sesama · 2021-2024",
-      imageUrl: null,
+      imageUrl: "/gallery/gallery-03.svg",
     },
     {
       tag: "Brand",
       title: "Key Visual Laporan Tahunan",
       org: "UCare Indonesia · 2022",
-      imageUrl: null,
+      imageUrl: "/gallery/gallery-04.svg",
     },
     {
       tag: "Video",
       title: "Profil Singkat Yayasan",
       org: "UCare Indonesia · 2021",
-      imageUrl: null,
+      imageUrl: "/gallery/gallery-05.svg",
     },
     {
       tag: "Tata Kelola",
       title: "SOP & Business Process Lembaga",
       org: "UCare Indonesia · 2025",
-      imageUrl: null,
+      imageUrl: "/gallery/gallery-06.svg",
     },
     {
       tag: "Identitas",
       title: "Redesain Logo & Program Lembaga",
       org: "UCare Indonesia · 2022",
-      imageUrl: null,
+      imageUrl: "/gallery/gallery-07.svg",
     },
     {
       tag: "Sosial Media",
       title: "Social Media Management",
       org: "UCare Indonesia · 2020-2024",
-      imageUrl: null,
+      imageUrl: "/gallery/gallery-08.svg",
     },
   ],
 };
+
 
 export const training = [
   { name: "AI Agent & Automation", period: "2026" },
