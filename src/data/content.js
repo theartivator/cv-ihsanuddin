@@ -18,7 +18,7 @@ export const profile = {
   email: "artivator@gmail.com",
   phone: "+62 857 7545 4715",
   resumeUrl: "/resume.pdf",
-  photoUrl: "/ChatGPT%20Image%20Sep%203%2C%202026%2C%2010_26_46%20AM.png",
+  photoUrl: "/Bahan%20CV-04.png",
   openToWorkPhotoUrl: null,
   openToWorkBadge: "Open to Scale Up",
 };
@@ -118,18 +118,10 @@ export const experience = [
   },
 ];
 
-export const projectsInternship = [
-  { org: "PT. Menara Maritim Indonesia (Pelindo)", short: "Pelindo", period: "2023 – 2024", logoUrl: null },
-  { org: "Disaster Management Institute of Indonesia (ACT)", short: "ACT", period: "2018", logoUrl: null },
-  { org: "PT. Kaizen Konsultan", short: "Kaizen", period: "2017", logoUrl: null },
-  { org: "PT. Indosat Mega Media, Jakarta", short: "IM2", period: "2016", logoUrl: null },
-  { org: "MT Binus University", short: "MT Binus", period: "2013 – 2016", logoUrl: null },
-  { org: "Kaizen Konsultan", short: "Kaizen", period: "2017", logoUrl: null },
-  { org: "Rekanusa", short: "Rekanusa", period: "2017", logoUrl: null },
-  { org: "Maestro General Contractor", short: "Maestro", period: "2017", logoUrl: null },
-  { org: "IMAQ Super Memori", short: "IMAQ", period: "2018", logoUrl: null },
-  { org: "Indonesia Aseli", short: "Indonesia Aseli", period: "2016", logoUrl: null },
-];
+export const projectsInternship = {
+  imageUrl: "/Bahan%20CV-03.png",
+  imageAlt: "Logo proyek dan magang",
+};
 
 export const featuredWork = [
   {
