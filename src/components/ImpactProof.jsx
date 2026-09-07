@@ -90,40 +90,49 @@ const CORE = { x: 50, y: 50 };
 
 const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
-// flatten clusters into positioned nodes. Every non-head node links straight
-// to its cluster's head (star topology) — never to a sibling.
-const { positioned, links } = (() => {
-  const positioned = [];
-  const links = [];
+// flatten clusters: every non-head leaf links straight to its own head
+// (star topology). Heads themselves stay perfectly still — only the small
+// leaves spin locally around their head, exactly like the reference video.
+let leafCounter = 0;
+const { heads: headNodes, leaves } = (() => {
+  const heads = [];
+  const leaves = [];
   clusters.forEach((cluster) => {
-    const headX = cluster.anchor.x;
-    const headY = cluster.anchor.y;
     cluster.nodes.forEach((n, idx) => {
       const x = clamp(cluster.anchor.x + n.dx, 3, 97);
       const y = clamp(cluster.anchor.y + n.dy, 3, 97);
-      if (idx > 0) {
-        links.push({ from: { x: headX, y: headY }, to: { x, y }, clusterId: cluster.id });
+      if (idx === 0) {
+        heads.push({ ...n, x, y, clusterId: cluster.id, clusterLabel: cluster.label, hex: cluster.hex, anchor: cluster.anchor });
+      } else {
+        const li = leafCounter++;
+        const duration = (15 + (li % 7) * 3.4).toFixed(2);
+        const clockwise = li % 2 === 0;
+        leaves.push({
+          ...n, x, y,
+          clusterId: cluster.id, clusterLabel: cluster.label, hex: cluster.hex,
+          head: cluster.anchor,
+          duration, delay: ((li % 5) * 0.55).toFixed(2), clockwise,
+        });
       }
-      positioned.push({ ...n, x, y, isHead: idx === 0, clusterId: cluster.id, clusterLabel: cluster.label, hex: cluster.hex });
     });
   });
-  return { positioned, links };
+  return { heads, leaves };
 })();
 
-// light beams flowing OUTWARD: from the central core toward each cluster head
+// light beams flowing INWARD: small node -> head -> core
 const coreLinks = clusters.map((c, i) => ({
   id: c.id,
   hex: c.hex,
-  from: CORE,
-  to: c.anchor,
+  from: c.anchor,
+  to: CORE,
   delay: (i * 0.35).toFixed(2),
   duration: (3.2 + (i % 4) * 0.5).toFixed(2),
 }));
 
 // every cluster head gets its label written out, pushed a little further
 // from the core so it doesn't sit on top of the node itself
-const heads = clusters.map((c) => {
-  const head = positioned.find((p) => p.clusterId === c.id);
+const headLabels = clusters.map((c) => {
+  const head = headNodes.find((p) => p.clusterId === c.id);
   const dx = head.x - CORE.x;
   const dy = head.y - CORE.y;
   const len = Math.hypot(dx, dy) || 1;
@@ -166,7 +175,7 @@ export default function ImpactProof() {
           className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden"
           style={{ background: "radial-gradient(ellipse at 30% 20%, #0b0f22 0%, #05070f 55%)", border: "1px solid var(--line)" }}
         >
-          {/* stars — static backdrop, does not rotate */}
+          {/* stars */}
           <div className="absolute inset-0">
             {stars.map((s, i) => (
               <div
@@ -184,78 +193,80 @@ export default function ImpactProof() {
             ))}
           </div>
 
-          {/* everything that orbits the core: links, nodes, head labels */}
-          <div className="absolute inset-0 proof-orbit-wrap">
-            {/* every child skill connects straight to its head skill (star topology) */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              {links.map((l, i) => {
-                const active = hovered && hovered.clusterId === l.clusterId;
-                return (
-                  <g key={i}>
-                    <line
-                      x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
-                      stroke={active ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.1)"}
-                      strokeWidth={active ? 0.9 : 0.55}
-                      style={{ transition: "stroke .25s, stroke-width .25s" }}
-                    />
-                    <line
-                      className="proof-core-flow"
-                      x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
-                      stroke="#ffffff"
-                      strokeWidth={active ? 0.5 : 0.3}
-                      strokeLinecap="round"
-                      strokeDasharray="0.5 6"
-                      opacity={active ? 0.9 : 0.5}
-                      style={{
-                        animationDuration: `${(2.2 + (i % 5) * 0.4).toFixed(2)}s`,
-                        animationDelay: `${(i * 0.12).toFixed(2)}s`,
-                        transition: "opacity .25s, stroke-width .25s",
-                      }}
-                    />
-                  </g>
-                );
-              })}
-            </svg>
-
-            {/* then every head skill connects to the central core */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              {coreLinks.map((l) => {
-                const active = hovered && hovered.clusterId === l.id;
-                return (
-                  <g key={l.id}>
-                    <line
-                      x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
-                      stroke={l.hex}
-                      strokeWidth={active ? 0.55 : 0.3}
-                      opacity={active ? 0.55 : 0.24}
-                      style={{ transition: "opacity .25s, stroke-width .25s" }}
-                    />
-                    <line
-                      className="proof-core-flow"
-                      x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
-                      stroke="#ffffff"
-                      strokeWidth={active ? 0.65 : 0.42}
-                      strokeLinecap="round"
-                      strokeDasharray="0.6 7"
-                      opacity={active ? 1 : 0.65}
-                      style={{
-                        animationDuration: `${l.duration}s`,
-                        animationDelay: `${l.delay}s`,
-                        filter: `drop-shadow(0 0 1.6px ${l.hex})`,
-                        transition: "opacity .25s, stroke-width .25s",
-                      }}
-                    />
-                  </g>
-                );
-              })}
-            </svg>
-
-            {/* nodes */}
-            {positioned.map((n, i) => {
-              const isHovered = hovered === n;
+          {/* head -> core beams (static endpoints, flow travels inward) */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            {coreLinks.map((l) => {
+              const active = hovered && hovered.clusterId === l.id;
               return (
+                <g key={l.id}>
+                  <line
+                    x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
+                    stroke={l.hex}
+                    strokeWidth={active ? 0.55 : 0.3}
+                    opacity={active ? 0.55 : 0.24}
+                    style={{ transition: "opacity .25s, stroke-width .25s" }}
+                  />
+                  <line
+                    className="proof-core-flow"
+                    x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
+                    stroke="#ffffff"
+                    strokeWidth={active ? 0.65 : 0.42}
+                    strokeLinecap="round"
+                    strokeDasharray="0.6 7"
+                    opacity={active ? 1 : 0.65}
+                    style={{
+                      animationDuration: `${l.duration}s`,
+                      animationDelay: `${l.delay}s`,
+                      filter: `drop-shadow(0 0 1.6px ${l.hex})`,
+                      transition: "opacity .25s, stroke-width .25s",
+                    }}
+                  />
+                </g>
+              );
+            })}
+          </svg>
+
+          {/* each leaf orbits locally around its own head; the connecting
+              line to the head swings together with it (same rotating group) */}
+          {leaves.map((n, i) => {
+            const isHovered = hovered === n;
+            const spin = n.clockwise ? "proof-leaf-spin-cw" : "proof-leaf-spin-ccw";
+            const counter = n.clockwise ? "proof-leaf-counter-cw" : "proof-leaf-counter-ccw";
+            const active = hovered && hovered.clusterId === n.clusterId;
+            return (
+              <div
+                key={i}
+                className={`absolute inset-0 proof-leaf-orbit ${spin}`}
+                style={{
+                  transformOrigin: `${n.head.x}% ${n.head.y}%`,
+                  animationDuration: `${n.duration}s`,
+                  animationDelay: `${n.delay}s`,
+                }}
+              >
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <line
+                    x1={n.head.x} y1={n.head.y} x2={n.x} y2={n.y}
+                    stroke={active ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.1)"}
+                    strokeWidth={active ? 0.9 : 0.55}
+                    style={{ transition: "stroke .25s, stroke-width .25s" }}
+                  />
+                  <line
+                    className="proof-core-flow"
+                    x1={n.x} y1={n.y} x2={n.head.x} y2={n.head.y}
+                    stroke="#ffffff"
+                    strokeWidth={active ? 0.5 : 0.3}
+                    strokeLinecap="round"
+                    strokeDasharray="0.5 6"
+                    opacity={active ? 0.9 : 0.5}
+                    style={{
+                      animationDuration: `${(2.2 + (i % 5) * 0.4).toFixed(2)}s`,
+                      animationDelay: `${(i * 0.12).toFixed(2)}s`,
+                      transition: "opacity .25s, stroke-width .25s",
+                    }}
+                  />
+                </svg>
+
                 <button
-                  key={i}
                   type="button"
                   aria-label={`${n.clusterLabel}: ${n.value}`}
                   className="absolute rounded-full cursor-pointer"
@@ -282,51 +293,95 @@ export default function ImpactProof() {
                     className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap font-mono-num text-[10px]"
                     style={{ color: "var(--text-dim)" }}
                   >
-                    <span className="proof-counter-spin inline-block">{n.value}</span>
+                    <span className={`inline-block ${counter}`} style={{ animationDuration: `${n.duration}s`, animationDelay: `${n.delay}s` }}>
+                      {n.value}
+                    </span>
                   </span>
 
                   {isHovered && (
-                    <div
-                      className="absolute z-10 left-1/2 bottom-full mb-3 -translate-x-1/2 pointer-events-none"
-                    >
+                    <div className="absolute z-10 left-1/2 bottom-full mb-3 -translate-x-1/2 pointer-events-none">
                       <div
-                        className="proof-counter-spin rounded-md px-3 py-2.5 max-w-[220px]"
-                        style={{ background: "#0b0e1d", border: "1px solid var(--line)" }}
+                        className={`inline-block ${counter}`}
+                        style={{ animationDuration: `${n.duration}s`, animationDelay: `${n.delay}s` }}
                       >
-                        <div className="font-display font-bold text-xl" style={{ color: n.hex }}>
-                          {n.value}
-                        </div>
-                        <div className="text-[9px] uppercase tracking-wide mb-1.5" style={{ color: "var(--text-dim)" }}>
-                          {n.clusterLabel}
-                        </div>
-                        <div className="text-[11px] leading-snug" style={{ color: "var(--text-muted)" }}>
-                          {n.desc}
+                        <div
+                          className="rounded-md px-3 py-2.5 max-w-[220px] text-left"
+                          style={{ background: "#0b0e1d", border: "1px solid var(--line)" }}
+                        >
+                          <div className="font-display font-bold text-xl" style={{ color: n.hex }}>
+                            {n.value}
+                          </div>
+                          <div className="text-[9px] uppercase tracking-wide mb-1.5" style={{ color: "var(--text-dim)" }}>
+                            {n.clusterLabel}
+                          </div>
+                          <div className="text-[11px] leading-snug" style={{ color: "var(--text-muted)" }}>
+                            {n.desc}
+                          </div>
                         </div>
                       </div>
                     </div>
                   )}
                 </button>
-              );
-            })}
+              </div>
+            );
+          })}
 
-            {/* head skill labels — every cluster head is written out, like the reference */}
-            {heads.map((h) => (
-              <div
-                key={h.id}
-                className="absolute pointer-events-none"
-                style={{ left: h.x + "%", top: h.y + "%", transform: "translate(-50%, -50%)" }}
+          {/* head nodes — completely static, always connected to the core */}
+          {headNodes.map((n, i) => {
+            const isHovered = hovered === n;
+            return (
+              <button
+                key={i}
+                type="button"
+                aria-label={`${n.clusterLabel}: ${n.value}`}
+                className="absolute rounded-full cursor-pointer"
+                style={{
+                  left: n.x + "%",
+                  top: n.y + "%",
+                  width: n.size,
+                  height: n.size,
+                  transform: `translate(-50%, -50%) scale(${isHovered ? 1.4 : 1})`,
+                  background: n.hex,
+                  boxShadow: `0 0 ${n.size * 2}px ${n.hex}, 0 0 ${n.size * 0.6}px ${n.hex}`,
+                  transition: "transform .18s ease, filter .18s ease",
+                  filter: isHovered ? "brightness(1.4)" : "none",
+                  border: "none",
+                  padding: 0,
+                  zIndex: isHovered ? 6 : 2,
+                }}
+                onMouseEnter={() => setHovered(n)}
+                onMouseLeave={() => setHovered(null)}
+                onFocus={() => setHovered(n)}
+                onBlur={() => setHovered(null)}
               >
                 <span
-                  className="proof-counter-spin inline-block whitespace-nowrap font-display font-bold text-[13px] md:text-sm"
-                  style={{ color: h.hex, textShadow: `0 0 10px ${h.hex}, 0 0 2px #000` }}
+                  className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap font-mono-num text-[10px]"
+                  style={{ color: "var(--text-dim)" }}
                 >
-                  {h.label}
+                  {n.value}
                 </span>
-              </div>
-            ))}
-          </div>
+                {isHovered && renderTooltipStatic(n)}
+              </button>
+            );
+          })}
 
-          {/* central core — bigger, brighter, fixed (does not rotate) */}
+          {/* head skill labels */}
+          {headLabels.map((h) => (
+            <div
+              key={h.id}
+              className="absolute pointer-events-none"
+              style={{ left: h.x + "%", top: h.y + "%", transform: "translate(-50%, -50%)" }}
+            >
+              <span
+                className="inline-block whitespace-nowrap font-display font-bold text-[13px] md:text-sm"
+                style={{ color: h.hex, textShadow: `0 0 10px ${h.hex}, 0 0 2px #000` }}
+              >
+                {h.label}
+              </span>
+            </div>
+          ))}
+
+          {/* central core — bigger, brighter, always fixed */}
           <div
             className="absolute pointer-events-none"
             style={{ left: CORE.x + "%", top: CORE.y + "%", transform: "translate(-50%, -50%)" }}
@@ -427,29 +482,70 @@ export default function ImpactProof() {
           animation: proof-core-glow 3.4s ease-in-out infinite;
         }
 
-        @keyframes proof-orbit-spin {
+        /* every small leaf node orbits its own head — heads and core never move */
+        @keyframes proof-leaf-spin-cw {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-        .proof-orbit-wrap {
-          animation: proof-orbit-spin 130s linear infinite;
-          transform-origin: 50% 50%;
-        }
-        .proof-orbit-wrap:hover {
-          animation-play-state: paused;
-        }
-
-        @keyframes proof-counter-spin {
+        @keyframes proof-leaf-spin-ccw {
           from { transform: rotate(0deg); }
           to { transform: rotate(-360deg); }
         }
-        .proof-counter-spin {
-          animation: proof-counter-spin 130s linear infinite;
+        .proof-leaf-orbit {
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
         }
-        .proof-orbit-wrap:hover .proof-counter-spin {
+        .proof-leaf-spin-cw { animation-name: proof-leaf-spin-cw; }
+        .proof-leaf-spin-ccw { animation-name: proof-leaf-spin-ccw; }
+        .proof-leaf-orbit:hover {
+          animation-play-state: paused;
+        }
+
+        /* counter-rotation keeps each leaf's value/tooltip text upright */
+        @keyframes proof-counter-cw {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(-360deg); }
+        }
+        @keyframes proof-counter-ccw {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .proof-leaf-counter-cw {
+          animation-name: proof-counter-cw;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+        .proof-leaf-counter-ccw {
+          animation-name: proof-counter-ccw;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+        .proof-leaf-orbit:hover .proof-leaf-counter-cw,
+        .proof-leaf-orbit:hover .proof-leaf-counter-ccw {
           animation-play-state: paused;
         }
       `}</style>
     </section>
+  );
+}
+
+function renderTooltipStatic(n) {
+  return (
+    <div className="absolute z-10 left-1/2 bottom-full mb-3 -translate-x-1/2 pointer-events-none">
+      <div
+        className="rounded-md px-3 py-2.5 max-w-[220px]"
+        style={{ background: "#0b0e1d", border: "1px solid var(--line)" }}
+      >
+        <div className="font-display font-bold text-xl" style={{ color: n.hex }}>
+          {n.value}
+        </div>
+        <div className="text-[9px] uppercase tracking-wide mb-1.5" style={{ color: "var(--text-dim)" }}>
+          {n.clusterLabel}
+        </div>
+        <div className="text-[11px] leading-snug" style={{ color: "var(--text-muted)" }}>
+          {n.desc}
+        </div>
+      </div>
+    </div>
   );
 }
