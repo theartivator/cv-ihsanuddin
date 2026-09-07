@@ -18,8 +18,8 @@ export const profile = {
   email: "artivator@gmail.com",
   phone: "+62 857 7545 4715",
   resumeUrl: "/resume.pdf",
-  photoUrl: "/Bahan%20CV-04.png",
-  openToWorkPhotoUrl: null,
+  photoUrl: "/ChatGPT%20Image%20Sep%203%2C%202026%2C%2010_26_46%20AM.png",
+  openToWorkPhotoUrl: "/Bahan%20CV-04.png",
   openToWorkBadge: "Open to Scale Up",
 };
 
