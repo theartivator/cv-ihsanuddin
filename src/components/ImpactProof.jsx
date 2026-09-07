@@ -3,25 +3,25 @@ import SectionHeading from "./SectionHeading";
 
 const clusters = [
   {
-    id: "design", label: "Skill Desain", hex: "#34d399", anchor: { x: 15, y: 47 },
+    id: "design", label: "Skill Desain", hex: "#1dffa8", anchor: { x: 15, y: 47 },
     nodes: [
-      { dx: -8, dy: -17, size: 22, value: "120+", desc: "Proyek desain yang selesai dan dikirim ke klien." },
+      { dx: -8, dy: -17, size: 24, value: "120+", desc: "Proyek desain yang selesai dan dikirim ke klien." },
       { dx: -1, dy: -25, size: 11, value: "95%", desc: "Desain disetujui pada iterasi pertama." },
       { dx: 6, dy: -9, size: 15, value: "3x", desc: "Lebih cepat dari brief ke mockup final." },
     ],
   },
   {
-    id: "konsep", label: "Skill Konsep", hex: "#fbbf24", anchor: { x: 40, y: 26 },
+    id: "konsep", label: "Skill Konsep", hex: "#ffd60a", anchor: { x: 40, y: 26 },
     nodes: [
-      { dx: -1, dy: -9, size: 24, value: "8/8", desc: "Konsep tervalidasi lewat riset sebelum eksekusi." },
+      { dx: -1, dy: -9, size: 26, value: "8/8", desc: "Konsep tervalidasi lewat riset sebelum eksekusi." },
       { dx: 7, dy: -16, size: 12, value: "92%", desc: "Kesesuaian hasil akhir dengan ide awal." },
       { dx: -7, dy: -3, size: 14, value: "99+", desc: "Mind mapping melihat masalah yang harus diselesaikan." },
     ],
   },
   {
-    id: "intuit", label: "Intuiting Extrovert (STIFIN)", hex: "#a78bfa", anchor: { x: 45, y: 79 },
+    id: "intuit", label: "Intuiting Extrovert (STIFIN)", hex: "#c04dff", anchor: { x: 45, y: 79 },
     nodes: [
-      { dx: -9, dy: -19, size: 24, value: "Ie", desc: "Tipe mesin kecerdasan hasil tes STIFIN." },
+      { dx: -9, dy: -19, size: 26, value: "Ie", desc: "Tipe mesin kecerdasan hasil tes STIFIN." },
       { dx: -3, dy: -27, size: 12, value: "2+", desc: "Individu yang telah dipetakan potensinya." },
       { dx: 5, dy: -22, size: 11, value: "++", desc: "Reformer" },
       { dx: 11, dy: -14, size: 11, value: "++", desc: "Quality" },
@@ -34,18 +34,18 @@ const clusters = [
     ],
   },
   {
-    id: "pribadi", label: "Skill di Pribadi", hex: "#fb7185", anchor: { x: 14, y: 76 },
+    id: "pribadi", label: "Skill di Pribadi", hex: "#ff3d71", anchor: { x: 14, y: 76 },
     nodes: [
-      { dx: -5, dy: -8, size: 21, value: "4.9", desc: "Rating personal branding dari rekan & klien." },
+      { dx: -5, dy: -8, size: 23, value: "4.9", desc: "Rating personal branding dari rekan & klien." },
       { dx: 2, dy: -16, size: 11, value: "12th", desc: "Konsistensi jejak rekam personal." },
       { dx: 8, dy: -5, size: 11, value: "15th", desc: "As Graphic designer" },
       { dx: 5, dy: 6, size: 10, value: "2nd", desc: "Month Deep Dive AI" },
     ],
   },
   {
-    id: "team", label: "Skill Teamwork", hex: "#60a5fa", anchor: { x: 66, y: 82 },
+    id: "team", label: "Skill Teamwork", hex: "#3d9dff", anchor: { x: 66, y: 82 },
     nodes: [
-      { dx: -7, dy: -9, size: 23, value: "25+", desc: "Tim lintas fungsi yang pernah dipimpin/didampingi." },
+      { dx: -7, dy: -9, size: 25, value: "25+", desc: "Tim lintas fungsi yang pernah dipimpin/didampingi." },
       { dx: 0, dy: -18, size: 11, value: "98%", desc: "Tingkat retensi anggota dalam tim yang sama." },
       { dx: 8, dy: -13, size: 10, value: "+++", desc: "Responsible" },
       { dx: 12, dy: -3, size: 10, value: "+++", desc: "Listener" },
@@ -56,9 +56,9 @@ const clusters = [
     ],
   },
   {
-    id: "ai", label: "Artificial Intelligence", hex: "#22d3ee", anchor: { x: 82, y: 44 },
+    id: "ai", label: "Artificial Intelligence", hex: "#00eaff", anchor: { x: 82, y: 44 },
     nodes: [
-      { dx: -7, dy: -9, size: 23, value: "40+", desc: "Tools/alur kerja berbasis AI yang dibangun." },
+      { dx: -7, dy: -9, size: 25, value: "40+", desc: "Tools/alur kerja berbasis AI yang dibangun." },
       { dx: 0, dy: -17, size: 11, value: "99%", desc: "Akurasi proses yang diotomasi." },
       { dx: 7, dy: -6, size: 14, value: "3+", desc: "User Artificial Intelligence LLM" },
       { dx: 9, dy: 3, size: 11, value: "++", desc: "N8N Automation Workflow" },
@@ -67,18 +67,18 @@ const clusters = [
     ],
   },
   {
-    id: "creative", label: "Creative Design", hex: "#f97316", anchor: { x: 66, y: 59 },
+    id: "creative", label: "Creative Design", hex: "#ff8c1a", anchor: { x: 66, y: 59 },
     nodes: [
-      { dx: -6, dy: -8, size: 22, value: "+++", desc: "Brand Identity" },
+      { dx: -6, dy: -8, size: 24, value: "+++", desc: "Brand Identity" },
       { dx: 0, dy: -15, size: 11, value: "++", desc: "Logo Design" },
       { dx: 7, dy: -3, size: 11, value: "++", desc: "Program & Events" },
       { dx: 2, dy: 8, size: 14, value: "+++", desc: "Social Media Management" },
     ],
   },
   {
-    id: "assembler", label: "Concepting & Assembler", hex: "#a3e635", anchor: { x: 89, y: 71 },
+    id: "assembler", label: "Concepting & Assembler", hex: "#baff29", anchor: { x: 89, y: 71 },
     nodes: [
-      { dx: -6, dy: -8, size: 22, value: "60+", desc: "Sistem/komponen berbeda berhasil dirakit jadi satu." },
+      { dx: -6, dy: -8, size: 24, value: "60+", desc: "Sistem/komponen berbeda berhasil dirakit jadi satu." },
       { dx: 0, dy: -15, size: 11, value: "18", desc: "Produk end-to-end yang dirilis." },
       { dx: 6, dy: -4, size: 12, value: "30+", desc: "Tata kelola disusun." },
       { dx: -2, dy: 8, size: 10, value: "++", desc: "System Integrasi" },
@@ -107,15 +107,31 @@ const { positioned, links } = (() => {
   return { positioned, links };
 })();
 
-// lines from each cluster anchor converging into the central core
+// light beams flowing OUTWARD: from the central core toward each cluster anchor
 const coreLinks = clusters.map((c, i) => ({
   id: c.id,
   hex: c.hex,
-  from: c.anchor,
-  to: CORE,
+  from: CORE,
+  to: c.anchor,
   delay: (i * 0.35).toFixed(2),
   duration: (3.2 + (i % 4) * 0.5).toFixed(2),
 }));
+
+// the biggest / first node of every cluster acts as its labelled "head"
+const heads = clusters.map((c) => {
+  const head = positioned.find((p) => p.clusterId === c.id);
+  const dx = head.x - CORE.x;
+  const dy = head.y - CORE.y;
+  const len = Math.hypot(dx, dy) || 1;
+  const push = head.size * 0.11 + 8;
+  return {
+    id: c.id,
+    label: c.label,
+    hex: c.hex,
+    x: head.x + (dx / len) * push,
+    y: head.y + (dy / len) * push,
+  };
+});
 
 function useStars(count) {
   return useMemo(
@@ -146,7 +162,7 @@ export default function ImpactProof() {
           className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden"
           style={{ background: "radial-gradient(ellipse at 30% 20%, #0b0f22 0%, #05070f 55%)", border: "1px solid var(--line)" }}
         >
-          {/* stars */}
+          {/* stars — static backdrop, does not rotate */}
           <div className="absolute inset-0">
             {stars.map((s, i) => (
               <div
@@ -164,56 +180,149 @@ export default function ImpactProof() {
             ))}
           </div>
 
-          {/* cluster-internal links */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            {links.map((l, i) => {
-              const active = hovered && hovered.clusterId === l.clusterId;
+          {/* everything that orbits the core: links, nodes, head labels */}
+          <div className="absolute inset-0 proof-orbit-wrap">
+            {/* cluster-internal links — flow outward from head to leaves */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              {links.map((l, i) => {
+                const active = hovered && hovered.clusterId === l.clusterId;
+                return (
+                  <g key={i}>
+                    <line
+                      x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
+                      stroke={active ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.1)"}
+                      strokeWidth={active ? 0.9 : 0.55}
+                      style={{ transition: "stroke .25s, stroke-width .25s" }}
+                    />
+                    <line
+                      className="proof-core-flow"
+                      x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
+                      stroke="#ffffff"
+                      strokeWidth={active ? 0.5 : 0.3}
+                      strokeLinecap="round"
+                      strokeDasharray="0.5 6"
+                      opacity={active ? 0.9 : 0.5}
+                      style={{
+                        animationDuration: `${(2.2 + (i % 5) * 0.4).toFixed(2)}s`,
+                        animationDelay: `${(i * 0.12).toFixed(2)}s`,
+                        transition: "opacity .25s, stroke-width .25s",
+                      }}
+                    />
+                  </g>
+                );
+              })}
+            </svg>
+
+            {/* beams flowing outward from the central core to every cluster */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              {coreLinks.map((l) => {
+                const active = hovered && hovered.clusterId === l.id;
+                return (
+                  <g key={l.id}>
+                    <line
+                      x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
+                      stroke={l.hex}
+                      strokeWidth={active ? 0.55 : 0.3}
+                      opacity={active ? 0.55 : 0.24}
+                      style={{ transition: "opacity .25s, stroke-width .25s" }}
+                    />
+                    <line
+                      className="proof-core-flow"
+                      x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
+                      stroke="#ffffff"
+                      strokeWidth={active ? 0.65 : 0.42}
+                      strokeLinecap="round"
+                      strokeDasharray="0.6 7"
+                      opacity={active ? 1 : 0.65}
+                      style={{
+                        animationDuration: `${l.duration}s`,
+                        animationDelay: `${l.delay}s`,
+                        filter: `drop-shadow(0 0 1.6px ${l.hex})`,
+                        transition: "opacity .25s, stroke-width .25s",
+                      }}
+                    />
+                  </g>
+                );
+              })}
+            </svg>
+
+            {/* nodes */}
+            {positioned.map((n, i) => {
+              const isHovered = hovered === n;
               return (
-                <line
+                <button
                   key={i}
-                  x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
-                  stroke={active ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.05)"}
-                  strokeWidth={active ? 0.9 : 0.5}
-                  style={{ transition: "stroke .25s, stroke-width .25s" }}
-                />
+                  type="button"
+                  aria-label={`${n.clusterLabel}: ${n.value}`}
+                  className="absolute rounded-full cursor-pointer"
+                  style={{
+                    left: n.x + "%",
+                    top: n.y + "%",
+                    width: n.size,
+                    height: n.size,
+                    transform: `translate(-50%, -50%) scale(${isHovered ? 1.4 : 1})`,
+                    background: n.hex,
+                    boxShadow: `0 0 ${n.size * 2}px ${n.hex}, 0 0 ${n.size * 0.6}px ${n.hex}`,
+                    transition: "transform .18s ease, filter .18s ease",
+                    filter: isHovered ? "brightness(1.4)" : "none",
+                    border: "none",
+                    padding: 0,
+                    zIndex: isHovered ? 5 : 1,
+                  }}
+                  onMouseEnter={() => setHovered(n)}
+                  onMouseLeave={() => setHovered(null)}
+                  onFocus={() => setHovered(n)}
+                  onBlur={() => setHovered(null)}
+                >
+                  <span
+                    className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap font-mono-num text-[10px]"
+                    style={{ color: "var(--text-dim)" }}
+                  >
+                    <span className="proof-counter-spin inline-block">{n.value}</span>
+                  </span>
+
+                  {isHovered && (
+                    <div
+                      className="absolute z-10 left-1/2 bottom-full mb-3 -translate-x-1/2 pointer-events-none"
+                    >
+                      <div
+                        className="proof-counter-spin rounded-md px-3 py-2.5 max-w-[220px]"
+                        style={{ background: "#0b0e1d", border: "1px solid var(--line)" }}
+                      >
+                        <div className="font-display font-bold text-xl" style={{ color: n.hex }}>
+                          {n.value}
+                        </div>
+                        <div className="text-[9px] uppercase tracking-wide mb-1.5" style={{ color: "var(--text-dim)" }}>
+                          {n.clusterLabel}
+                        </div>
+                        <div className="text-[11px] leading-snug" style={{ color: "var(--text-muted)" }}>
+                          {n.desc}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </button>
               );
             })}
-          </svg>
 
-          {/* converging light lines toward the central core */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            {coreLinks.map((l) => {
-              const active = hovered && hovered.clusterId === l.id;
-              return (
-                <g key={l.id}>
-                  <line
-                    x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
-                    stroke={l.hex}
-                    strokeWidth={active ? 0.45 : 0.22}
-                    opacity={active ? 0.35 : 0.14}
-                    style={{ transition: "opacity .25s, stroke-width .25s" }}
-                  />
-                  <line
-                    className="proof-core-flow"
-                    x1={l.from.x} y1={l.from.y} x2={l.to.x} y2={l.to.y}
-                    stroke="#ffffff"
-                    strokeWidth={active ? 0.55 : 0.35}
-                    strokeLinecap="round"
-                    strokeDasharray="0.6 7"
-                    opacity={active ? 0.85 : 0.45}
-                    style={{
-                      animationDuration: `${l.duration}s`,
-                      animationDelay: `${l.delay}s`,
-                      filter: `drop-shadow(0 0 1.2px ${l.hex})`,
-                      transition: "opacity .25s, stroke-width .25s",
-                    }}
-                  />
-                </g>
-              );
-            })}
-          </svg>
+            {/* head skill labels — every cluster head is written out, like the reference */}
+            {heads.map((h) => (
+              <div
+                key={h.id}
+                className="absolute pointer-events-none"
+                style={{ left: h.x + "%", top: h.y + "%", transform: "translate(-50%, -50%)" }}
+              >
+                <span
+                  className="proof-counter-spin inline-block whitespace-nowrap font-display font-bold text-[13px] md:text-sm"
+                  style={{ color: h.hex, textShadow: `0 0 10px ${h.hex}, 0 0 2px #000` }}
+                >
+                  {h.label}
+                </span>
+              </div>
+            ))}
+          </div>
 
-          {/* central core: light + brain */}
+          {/* central core — bigger, brighter, fixed (does not rotate) */}
           <div
             className="absolute pointer-events-none"
             style={{ left: CORE.x + "%", top: CORE.y + "%", transform: "translate(-50%, -50%)" }}
@@ -221,25 +330,24 @@ export default function ImpactProof() {
             <div
               className="proof-core-halo absolute rounded-full"
               style={{
-                width: 150, height: 150, left: "50%", top: "50%",
+                width: 230, height: 230, left: "50%", top: "50%",
                 transform: "translate(-50%, -50%)",
-                background: "radial-gradient(circle, rgba(143,166,255,0.35) 0%, rgba(143,166,255,0) 70%)",
-                filter: "blur(2px)",
+                background: "radial-gradient(circle, rgba(180,200,255,0.55) 0%, rgba(143,166,255,0) 68%)",
+                filter: "blur(1px)",
               }}
             />
             <svg
               className="proof-core-brain relative"
-              width="46" height="38" viewBox="0 0 46 38"
+              width="70" height="58" viewBox="0 0 46 38"
               style={{ overflow: "visible" }}
             >
               <defs>
                 <radialGradient id="proof-core-grad" cx="50%" cy="45%" r="65%">
-                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-                  <stop offset="55%" stopColor="#c9d4ff" stopOpacity="0.55" />
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+                  <stop offset="55%" stopColor="#d8e0ff" stopOpacity="0.75" />
                   <stop offset="100%" stopColor="#8fa6ff" stopOpacity="0" />
                 </radialGradient>
               </defs>
-              {/* soft brain-like twin-lobe silhouette */}
               <path
                 d="M23 3
                    C14 -1 3 4 3 14
@@ -250,10 +358,9 @@ export default function ImpactProof() {
                    C40 21 43 19 43 14
                    C43 4 32 -1 23 3 Z"
                 fill="url(#proof-core-grad)"
-                stroke="rgba(255,255,255,0.55)"
+                stroke="rgba(255,255,255,0.75)"
                 strokeWidth="0.6"
               />
-              {/* subtle fold lines for a "neural" texture */}
               <path d="M23 5 C21 12 21 22 23 32" stroke="rgba(11,15,34,0.35)" strokeWidth="0.5" fill="none" />
               <path d="M12 10 C15 15 15 22 11 27" stroke="rgba(11,15,34,0.25)" strokeWidth="0.4" fill="none" />
               <path d="M34 10 C31 15 31 22 35 27" stroke="rgba(11,15,34,0.25)" strokeWidth="0.4" fill="none" />
@@ -261,81 +368,20 @@ export default function ImpactProof() {
             <div
               className="proof-core-pulse absolute rounded-full"
               style={{
-                width: 10, height: 10, left: "50%", top: "58%",
+                width: 16, height: 16, left: "50%", top: "58%",
                 transform: "translate(-50%, -50%)",
                 background: "#ffffff",
-                boxShadow: "0 0 18px 6px rgba(255,255,255,0.85)",
+                boxShadow: "0 0 30px 10px rgba(255,255,255,0.95)",
               }}
             />
           </div>
-
-          {/* nodes */}
-          {positioned.map((n, i) => {
-            const isHovered = hovered === n;
-            return (
-              <button
-                key={i}
-                type="button"
-                aria-label={`${n.clusterLabel}: ${n.value}`}
-                className="absolute rounded-full cursor-pointer"
-                style={{
-                  left: n.x + "%",
-                  top: n.y + "%",
-                  width: n.size,
-                  height: n.size,
-                  transform: `translate(-50%, -50%) scale(${isHovered ? 1.35 : 1})`,
-                  background: n.hex,
-                  boxShadow: `0 0 ${n.size * 1.4}px ${n.hex}99`,
-                  transition: "transform .18s ease, filter .18s ease",
-                  filter: isHovered ? "brightness(1.3)" : "none",
-                  border: "none",
-                  padding: 0,
-                }}
-                onMouseEnter={() => setHovered(n)}
-                onMouseLeave={() => setHovered(null)}
-                onFocus={() => setHovered(n)}
-                onBlur={() => setHovered(null)}
-              >
-                <span
-                  className="absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap font-mono-num text-[10px]"
-                  style={{ color: "var(--text-dim)" }}
-                >
-                  {n.value}
-                </span>
-              </button>
-            );
-          })}
-
-          {/* tooltip */}
-          {hovered && (
-            <div
-              className="absolute z-10 rounded-md px-3 py-2.5 pointer-events-none max-w-[220px]"
-              style={{
-                left: hovered.x + "%",
-                top: hovered.y + "%",
-                transform: "translate(-50%, -125%)",
-                background: "#0b0e1d",
-                border: "1px solid var(--line)",
-              }}
-            >
-              <div className="font-display font-bold text-xl" style={{ color: hovered.hex }}>
-                {hovered.value}
-              </div>
-              <div className="text-[9px] uppercase tracking-wide mb-1.5" style={{ color: "var(--text-dim)" }}>
-                {hovered.clusterLabel}
-              </div>
-              <div className="text-[11px] leading-snug" style={{ color: "var(--text-muted)" }}>
-                {hovered.desc}
-              </div>
-            </div>
-          )}
         </div>
 
         {/* legend */}
         <div className="flex flex-wrap gap-x-5 gap-y-2.5 mt-6 text-xs">
           {clusters.map((c) => (
             <span key={c.id} className="flex items-center gap-2" style={{ color: "var(--text-dim)" }}>
-              <span className="w-2 h-2 rounded-full" style={{ background: c.hex }} />
+              <span className="w-2 h-2 rounded-full" style={{ background: c.hex, boxShadow: `0 0 6px ${c.hex}` }} />
               {c.label}
             </span>
           ))}
@@ -356,25 +402,48 @@ export default function ImpactProof() {
           animation-iteration-count: infinite;
         }
         @keyframes proof-core-pulse {
-          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .9; }
-          50% { transform: translate(-50%, -50%) scale(1.5); opacity: .55; }
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .95; }
+          50% { transform: translate(-50%, -50%) scale(1.6); opacity: .6; }
         }
         .proof-core-pulse {
           animation: proof-core-pulse 2.6s ease-in-out infinite;
         }
         @keyframes proof-core-halo-pulse {
-          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .8; }
-          50% { transform: translate(-50%, -50%) scale(1.25); opacity: .45; }
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .9; }
+          50% { transform: translate(-50%, -50%) scale(1.3); opacity: .5; }
         }
         .proof-core-halo {
           animation: proof-core-halo-pulse 3.4s ease-in-out infinite;
         }
         @keyframes proof-core-glow {
-          0%, 100% { filter: drop-shadow(0 0 6px rgba(143,166,255,0.55)); }
-          50% { filter: drop-shadow(0 0 16px rgba(143,166,255,0.9)); }
+          0%, 100% { filter: drop-shadow(0 0 10px rgba(180,200,255,0.7)); }
+          50% { filter: drop-shadow(0 0 24px rgba(180,200,255,1)); }
         }
         .proof-core-brain {
           animation: proof-core-glow 3.4s ease-in-out infinite;
+        }
+
+        @keyframes proof-orbit-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .proof-orbit-wrap {
+          animation: proof-orbit-spin 130s linear infinite;
+          transform-origin: 50% 50%;
+        }
+        .proof-orbit-wrap:hover {
+          animation-play-state: paused;
+        }
+
+        @keyframes proof-counter-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(-360deg); }
+        }
+        .proof-counter-spin {
+          animation: proof-counter-spin 130s linear infinite;
+        }
+        .proof-orbit-wrap:hover .proof-counter-spin {
+          animation-play-state: paused;
         }
       `}</style>
     </section>
